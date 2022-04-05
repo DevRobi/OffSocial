@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import, unused_element, unused_field, prefer_typing_uninitialized_variables, prefer_const_constructors, avoid_print
 import 'package:flutter/cupertino.dart';
+import 'package:unique_identifier/unique_identifier.dart';
 import 'package:flutter/material.dart';
 import 'package:app_usage/app_usage.dart';
 import 'dart:math';
@@ -10,6 +11,7 @@ import 'model/form.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/services.dart';
+
 //new comment
 // szia helo alljunk osszi mint ket kicsi lego
 // szia helo alljunk osszi mint ket kicsi lego
@@ -30,8 +32,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  //init device ID
-  String? _deviceId;
   // stlying of the bottom bar
   final TabStyle _tabStyle = TabStyle.fixed;
   get floatingActionButton => null;
@@ -60,11 +60,15 @@ class _MyAppState extends State<MyApp> {
   double roundedScore = 0;
   get displayedScore => null;
 
+  String? _deviceId;
+
   @override
   void initState() {
     super.initState();
+    initPlatformState();
   }
 
+  // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     String? deviceId;
     // Platform messages may fail, so we use a try/catch PlatformException.
@@ -87,7 +91,6 @@ class _MyAppState extends State<MyApp> {
 
   void getUsageStats() async {
     try {
-      print("deviceId->$_deviceId");
       DateTime endDate = DateTime.now();
       DateTime startDate = DateTime(DateTime.now().year, DateTime.now().month,
           DateTime.now().day, 0, 0, 0, 0, 0);
@@ -153,9 +156,9 @@ class _MyAppState extends State<MyApp> {
             const Divider(),
             FloatingActionButton(
                 onPressed: () {
-                  getUsageStats();
-                  _submitForm();
                   initPlatformState();
+                  _submitForm();
+                  getUsageStats();
                 },
                 child: const Icon(Icons.refresh)),
             Expanded(
