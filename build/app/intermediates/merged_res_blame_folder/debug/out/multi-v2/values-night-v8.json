@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\deven\\SynologyDrive\\techtabor\\flutter_application_1\\Anti-socialmedia\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\deven\\SynologyDrive\\techtabor\\flutter_application_1\\Anti-socialmedia\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
