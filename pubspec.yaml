@@ -33,6 +33,7 @@ dependencies:
   http: ^0.13.4
   platform_device_id: any
   convex_bottom_bar: ^3.0.0
+  unique_identifier: ^0.2.2
 
 
   # The following adds the Cupertino Icons font to your application.

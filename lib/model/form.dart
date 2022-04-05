@@ -2,21 +2,18 @@
 class FeedbackForm {
   String name;
   String version;
-  String discord;
-  
+  String totalusage;
 
-  FeedbackForm(this.name, this.version, this.discord);
+  FeedbackForm(this.name, this.version, this.totalusage);
 
   factory FeedbackForm.fromJson(dynamic json) {
-    return FeedbackForm("${json['name']}", "${json['version']}",
-        "${json['discord']}",);
+    return FeedbackForm(
+      "${json['name']}",
+      "${json['version']}",
+      "${json['totalusage']}",
+    );
   }
 
   // Method to make GET parameters.
-  Map toJson() => {
-        'name': name,
-        'version': version,
-        'discord': discord
-      };
+  Map toJson() => {'name': name, 'version': version, 'totalusage': totalusage};
 }
-
