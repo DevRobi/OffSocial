@@ -10,7 +10,7 @@ import 'model/form.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/services.dart';
-
+// szia helo alljunk osszi mint ket kicsi lego
 // defining separated pages
 const _kPages = <String, IconData>{
   'Profile': Icons.account_circle,
