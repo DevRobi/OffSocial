@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\deven\\SynologyDrive\\techtabor\\flutter_application_1\\Anti-socialmedia\\build\\device_info\\intermediates\\res\\merged\\debug\\values-en-rIN\\values-en-rIN.xml",
+            "outputFile": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\build\\device_info\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rIN\\values-en-rIN.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\deven\\.gradle\\caches\\transforms-2\\files-2.1\\5f663b08eec19eef9a9d1af662d9025e\\core-1.6.0\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "source": "C:\\Users\\bratyo\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\values-en-rIN\\values-en-rIN.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\deven\\SynologyDrive\\techtabor\\flutter_application_1\\Anti-socialmedia\\build\\device_info\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rIN\\values-en-rIN.xml",
+            "outputFile": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\build\\device_info\\intermediates\\res\\merged\\debug\\values-en-rIN\\values-en-rIN.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\deven\\.gradle\\caches\\transforms-2\\files-2.1\\5f663b08eec19eef9a9d1af662d9025e\\core-1.6.0\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "source": "C:\\Users\\bratyo\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\values-en-rIN\\values-en-rIN.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

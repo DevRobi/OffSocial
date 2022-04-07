@@ -1,4 +1,4 @@
-#Tue Apr 05 15:26:52 CEST 2022
-base.0=C\:\\Users\\deven\\SynologyDrive\\techtabor\\flutter_application_1\\Anti-socialmedia\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Thu Apr 07 18:48:23 CEST 2022
+base.0=C\:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

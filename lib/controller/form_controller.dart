@@ -10,7 +10,7 @@ class FormController {
   // Google App Script Web URL.
   // ignore: constant_identifier_names
   var URL = Uri.parse(
-      "https://script.google.com/macros/s/AKfycbz0k_zELXYLYAfbIpq84odTwJ9LSnOL7JJa5BkMWMOYT8tzZyNmcCNN8W7Xf7suglDf/exec");
+      "https://script.google.com/macros/s/AKfycbxbBAkdQ0uBo_B9_2NvHw25qPiCcn10vC61hjPfVZmILCkRFB-fX25yfTdRv9e4JpPC/exec");
 
   // Success Status Message
   static const STATUS_SUCCESS = "SUCCESS";
