@@ -1,5 +1,7 @@
 // ignore_for_file: unused_import, unused_element, unused_field, prefer_typing_uninitialized_variables, prefer_const_constructors, avoid_print
-import 'package:flutter/cupertino.dart';
+import 'dart:typed_data';
+
+import 'package:binary_codec/binary_codec.dart';
 import 'package:unique_identifier/unique_identifier.dart';
 import 'package:flutter/material.dart';
 import 'package:app_usage/app_usage.dart';
@@ -12,9 +14,6 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/services.dart';
 
-//new comment
-// szia helo alljunk osszi mint ket kicsi lego
-// szia helo alljunk osszi mint ket kicsi lego
 // defining separated pages
 const _kPages = <String, IconData>{
   'Profile': Icons.account_circle,
@@ -37,7 +36,7 @@ class _MyAppState extends State<MyApp> {
   get floatingActionButton => null;
 
   // array of socials
-  static const appnamearray = [
+  static const packagenamearray = [
     "com.discord",
     "com.facebook.katana",
     "com.facebook.orca",
@@ -46,19 +45,36 @@ class _MyAppState extends State<MyApp> {
     "com.ss.android.ugc.trill",
     "com.instagram.android",
     "com.twitter.android",
-    "com.snapchat",
     "com.zhiliaoapp.musically",
     "com.reddit.frontpage"
   ];
+  static const appnamearray = [
+    'facebook',
+    'instagram',
+    'pinterest',
+    'reddit',
+    'tiktok',
+    'tumblr',
+    'twitch',
+    'twitter',
+    'youtube'
+  ];
 
   // scoring variables
+  int _defaultscore = 120;
+  int _score = 0;
 
-  int _usageseconds = 0;
-  int _numpressed = 0;
-  var currentScore;
-  var defaultScore = 120;
-  double roundedScore = 0;
-  get displayedScore => null;
+  int _facebook = 0;
+  int _instagram = 0;
+  int _pinterest = 0;
+  int _reddit = 0;
+  int _tiktok = 0;
+  int _tumblr = 0;
+  int _twitch = 0;
+  int _twitter = 0;
+  int _youtube = 0;
+
+  String _encodedinfo = "";
 
   String? _deviceId;
 
@@ -97,23 +113,69 @@ class _MyAppState extends State<MyApp> {
       List<AppUsageInfo> infoList =
           await AppUsage.getAppUsage(startDate, endDate);
       var inseconds = 0;
+      var tobejson = {};
       for (var info in infoList) {
-        if (appnamearray.contains(info.packageName)) {
+        tobejson[info.appName] = {
+          'usage': info.usage.inSeconds,
+          'packageName': info.packageName,
+        };
+        if (packagenamearray.contains(info.packageName)) {
           inseconds += info.usage.inSeconds;
+          switch ((info.appName).toLowerCase().split(' ')[0]) {
+            case 'facebook':
+              {
+                _facebook = info.usage.inSeconds;
+              }
+              break;
+            case 'instagram':
+              {
+                _instagram = info.usage.inSeconds;
+              }
+              break;
+            case 'pinterest':
+              {
+                _pinterest = info.usage.inSeconds;
+              }
+              break;
+            case 'reddit':
+              {
+                _reddit = info.usage.inSeconds;
+              }
+              break;
+            case 'tiktok':
+              {
+                _tiktok = info.usage.inSeconds;
+              }
+              break;
+            case 'tumblr':
+              {
+                _tumblr = info.usage.inSeconds;
+              }
+              break;
+            case 'twitter':
+              {
+                _twitter = info.usage.inSeconds;
+              }
+              break;
+            case 'twitch':
+              {
+                _twitch = info.usage.inSeconds;
+              }
+              break;
+            case 'youtube':
+              {
+                _youtube = info.usage.inSeconds;
+              }
+              break;
+          }
         }
       }
       setState(() {
-        _usageseconds = inseconds;
-        _numpressed++;
-
         // scoring function
-        currentScore = (defaultScore - (_usageseconds / 60));
-
-        // rounding the score value
-        double locRoundedScore = currentScore;
-        currentScore = locRoundedScore.round();
-
-        // ignore: unused_local_variable
+        _score = (_defaultscore - (inseconds / 60)).round();
+        // encoding function
+        _encodedinfo = jsonEncode(tobejson);
+        print(tobejson);
       });
     } on AppUsageException catch (exception) {
       print(exception);
@@ -121,8 +183,21 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _submitForm() {
-    FeedbackForm feedbackForm =
-        FeedbackForm(_deviceId!, 'V1.0', _usageseconds.toString());
+    FeedbackForm feedbackForm = FeedbackForm(
+        _deviceId!,
+        'V1.1',
+        _score.toString(),
+        _facebook.toString(),
+        _instagram.toString(),
+        _pinterest.toString(),
+        _reddit.toString(),
+        _tiktok.toString(),
+        _tumblr.toString(),
+        _twitch.toString(),
+        _twitter.toString(),
+        _youtube.toString(),
+        _encodedinfo,
+        DateTime.now().toString());
 
     FormController formController = FormController();
 
