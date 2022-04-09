@@ -1,6 +1,6 @@
 // ignore_for_file: unused_import, unused_element, unused_field, prefer_typing_uninitialized_variables, prefer_const_constructors, avoid_print
 import 'dart:typed_data';
-
+import 'package_names.dart' as globals;
 import 'package:binary_codec/binary_codec.dart';
 import 'package:unique_identifier/unique_identifier.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +34,6 @@ class _MyAppState extends State<MyApp> {
   // stlying of the bottom bar
   final TabStyle _tabStyle = TabStyle.fixed;
   get floatingActionButton => null;
-
   // array of socials
   static const packagenamearray = [
     "com.discord",
@@ -115,58 +114,35 @@ class _MyAppState extends State<MyApp> {
       var inseconds = 0;
       var tobejson = {};
       for (var info in infoList) {
-        tobejson[info.appName] = {
-          'usage': info.usage.inSeconds,
-          'packageName': info.packageName,
-        };
-        if (packagenamearray.contains(info.packageName)) {
+        tobejson[info.packageName] = info.usage.inSeconds;
+        if (globals.allPackageNames.contains(info.packageName)) {
           inseconds += info.usage.inSeconds;
-          switch ((info.appName).toLowerCase().split(' ')[0]) {
-            case 'facebook':
-              {
-                _facebook = info.usage.inSeconds;
-              }
-              break;
-            case 'instagram':
-              {
-                _instagram = info.usage.inSeconds;
-              }
-              break;
-            case 'pinterest':
-              {
-                _pinterest = info.usage.inSeconds;
-              }
-              break;
-            case 'reddit':
-              {
-                _reddit = info.usage.inSeconds;
-              }
-              break;
-            case 'tiktok':
-              {
-                _tiktok = info.usage.inSeconds;
-              }
-              break;
-            case 'tumblr':
-              {
-                _tumblr = info.usage.inSeconds;
-              }
-              break;
-            case 'twitter':
-              {
-                _twitter = info.usage.inSeconds;
-              }
-              break;
-            case 'twitch':
-              {
-                _twitch = info.usage.inSeconds;
-              }
-              break;
-            case 'youtube':
-              {
-                _youtube = info.usage.inSeconds;
-              }
-              break;
+          if (globals.facebookPackageNames.contains(info.packageName)) {
+            _facebook += info.usage.inSeconds;
+          }
+          if (globals.instagramPackageNames.contains(info.packageName)) {
+            _instagram += info.usage.inSeconds;
+          }
+          if (globals.pinterestPackageNames.contains(info.packageName)) {
+            _pinterest += info.usage.inSeconds;
+          }
+          if (globals.redditPackageNames.contains(info.packageName)) {
+            _reddit += info.usage.inSeconds;
+          }
+          if (globals.tiktokPackageNames.contains(info.packageName)) {
+            _tiktok += info.usage.inSeconds;
+          }
+          if (globals.tumblrPackageNames.contains(info.packageName)) {
+            _tumblr += info.usage.inSeconds;
+          }
+          if (globals.twitchPackageNames.contains(info.packageName)) {
+            _twitch += info.usage.inSeconds;
+          }
+          if (globals.twitterPackageNames.contains(info.packageName)) {
+            _twitter += info.usage.inSeconds;
+          }
+          if (globals.youtubePackageNames.contains(info.packageName)) {
+            _youtube += info.usage.inSeconds;
           }
         }
       }
