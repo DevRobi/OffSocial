@@ -1,8 +1,6 @@
 // ignore_for_file: unused_import, unused_element, unused_field, prefer_typing_uninitialized_variables, prefer_const_constructors, avoid_print
 import 'dart:typed_data';
 import 'package_names.dart' as globals;
-import 'package:binary_codec/binary_codec.dart';
-import 'package:unique_identifier/unique_identifier.dart';
 import 'package:flutter/material.dart';
 import 'package:app_usage/app_usage.dart';
 import 'dart:math';
@@ -34,30 +32,6 @@ class _MyAppState extends State<MyApp> {
   // stlying of the bottom bar
   final TabStyle _tabStyle = TabStyle.fixed;
   get floatingActionButton => null;
-  // array of socials
-  static const packagenamearray = [
-    "com.discord",
-    "com.facebook.katana",
-    "com.facebook.orca",
-    "com.vanced.android.youtube",
-    "com.google.android.youtube",
-    "com.ss.android.ugc.trill",
-    "com.instagram.android",
-    "com.twitter.android",
-    "com.zhiliaoapp.musically",
-    "com.reddit.frontpage"
-  ];
-  static const appnamearray = [
-    'facebook',
-    'instagram',
-    'pinterest',
-    'reddit',
-    'tiktok',
-    'tumblr',
-    'twitch',
-    'twitter',
-    'youtube'
-  ];
 
   // scoring variables
   int _defaultscore = 120;
@@ -113,6 +87,18 @@ class _MyAppState extends State<MyApp> {
           await AppUsage.getAppUsage(startDate, endDate);
       var inseconds = 0;
       var tobejson = {};
+
+      //resetting variables
+      _facebook = 0;
+      _instagram = 0;
+      _pinterest = 0;
+      _reddit = 0;
+      _tiktok = 0;
+      _tumblr = 0;
+      _twitch = 0;
+      _twitter = 0;
+      _youtube = 0;
+
       for (var info in infoList) {
         tobejson[info.packageName] = info.usage.inSeconds;
         if (globals.allPackageNames.contains(info.packageName)) {
@@ -151,7 +137,6 @@ class _MyAppState extends State<MyApp> {
         _score = (_defaultscore - (inseconds / 60)).round();
         // encoding function
         _encodedinfo = jsonEncode(tobejson);
-        print(tobejson);
       });
     } on AppUsageException catch (exception) {
       print(exception);

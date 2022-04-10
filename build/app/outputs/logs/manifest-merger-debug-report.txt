@@ -21,6 +21,7 @@ MERGED from [:platform_device_id] C:\Users\bratyo\Documents\code\techtabor\main_
 MERGED from [:device_info] C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\device_info\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:unique_identifier] C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\unique_identifier\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:app_usage] C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\app_usage\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\1579cd0cfb0bc4be7ef0f3d3053110aa\multidex-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\f5e7c36361217b9289d3c35dcaca0d14\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\d3827d54b1293b490fbce5969dc7d5d2\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
@@ -76,6 +77,8 @@ MERGED from [:unique_identifier] C:\Users\bratyo\Documents\code\techtabor\main_a
 MERGED from [:unique_identifier] C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\unique_identifier\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:app_usage] C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\app_usage\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:app_usage] C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\app_usage\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\1579cd0cfb0bc4be7ef0f3d3053110aa\multidex-2.0.0\AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\1579cd0cfb0bc4be7ef0f3d3053110aa\multidex-2.0.0\AndroidManifest.xml:20:5-43
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\f5e7c36361217b9289d3c35dcaca0d14\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\f5e7c36361217b9289d3c35dcaca0d14\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
