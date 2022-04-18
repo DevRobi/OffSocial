@@ -5,7 +5,7 @@
 5    android:versionName="1.0.0" >
 6
 7    <uses-sdk
-8        android:minSdkVersion="16"
+8        android:minSdkVersion="22"
 9        android:targetSdkVersion="31" />
 10    <!--
 11         Flutter needs it to communicate with the running application
@@ -17,59 +17,65 @@
 15    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
 15-->C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\android\app\src\main\AndroidManifest.xml:4:5-6:46
 15-->C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\android\app\src\main\AndroidManifest.xml:5:9-62
-16
-17    <application
-18        android:name="android.app.Application"
-19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-19-->[androidx.core:core:1.6.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\be6c37f920226f799c8e079c11ae9b32\core-1.6.0\AndroidManifest.xml:24:18-86
-20        android:debuggable="true"
-21        android:icon="@mipmap/ic_launcher"
-22        android:label="tracker" >
-23        <activity
-24            android:name="com.example.tracker.MainActivity"
-25            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-26            android:exported="true"
-27            android:hardwareAccelerated="true"
-28            android:launchMode="singleTop"
-29            android:theme="@style/LaunchTheme"
-30            android:windowSoftInputMode="adjustResize" >
-31
-32            <!--
-33                 Specifies an Android theme to apply to this Activity as soon as
-34                 the Android process has started. This theme is visible to the user
-35                 while the Flutter UI initializes. After that, this theme continues
-36                 to determine the Window background behind the Flutter UI.
-37            -->
-38            <meta-data
-39                android:name="io.flutter.embedding.android.NormalTheme"
-40                android:resource="@style/NormalTheme" />
-41
-42            <intent-filter>
-43                <action android:name="android.intent.action.MAIN" />
-44
-45                <category android:name="android.intent.category.LAUNCHER" />
-46            </intent-filter>
-47        </activity>
-48        <!--
-49             Don't delete the meta-data below.
-50             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-51        -->
-52        <meta-data
-53            android:name="flutterEmbedding"
-54            android:value="2" />
-55
-56        <uses-library
-56-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
-57            android:name="androidx.window.extensions"
-57-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
-58            android:required="false" />
-58-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
-59        <uses-library
-59-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
-60            android:name="androidx.window.sidecar"
-60-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
-61            android:required="false" />
-61-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
-62    </application>
-63
-64</manifest>
+16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+16-->C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\android\app\src\main\AndroidManifest.xml:7:5-80
+16-->C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\android\app\src\main\AndroidManifest.xml:7:22-78
+17    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+17-->C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\android\app\src\main\AndroidManifest.xml:8:5-79
+17-->C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\android\app\src\main\AndroidManifest.xml:8:22-77
+18
+19    <application
+20        android:name="android.app.Application"
+21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+21-->[androidx.core:core:1.6.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\be6c37f920226f799c8e079c11ae9b32\core-1.6.0\AndroidManifest.xml:24:18-86
+22        android:debuggable="true"
+23        android:icon="@mipmap/ic_launcher"
+24        android:label="tracker" >
+25        <activity
+26            android:name="com.example.tracker.MainActivity"
+27            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+28            android:exported="true"
+29            android:hardwareAccelerated="true"
+30            android:launchMode="singleTop"
+31            android:theme="@style/LaunchTheme"
+32            android:windowSoftInputMode="adjustResize" >
+33
+34            <!--
+35                 Specifies an Android theme to apply to this Activity as soon as
+36                 the Android process has started. This theme is visible to the user
+37                 while the Flutter UI initializes. After that, this theme continues
+38                 to determine the Window background behind the Flutter UI.
+39            -->
+40            <meta-data
+41                android:name="io.flutter.embedding.android.NormalTheme"
+42                android:resource="@style/NormalTheme" />
+43
+44            <intent-filter>
+45                <action android:name="android.intent.action.MAIN" />
+46
+47                <category android:name="android.intent.category.LAUNCHER" />
+48            </intent-filter>
+49        </activity>
+50        <!--
+51             Don't delete the meta-data below.
+52             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+53        -->
+54        <meta-data
+55            android:name="flutterEmbedding"
+56            android:value="2" />
+57
+58        <uses-library
+58-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+59            android:name="androidx.window.extensions"
+59-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+60            android:required="false" />
+60-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+61        <uses-library
+61-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+62            android:name="androidx.window.sidecar"
+62-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+63            android:required="false" />
+63-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+64    </application>
+65
+66</manifest>

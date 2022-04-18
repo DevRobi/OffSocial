@@ -13,6 +13,7 @@ class FeedbackForm {
   String twitter;
   String youtube;
   String encodedinfo;
+  String dayindex;
   String lastupdated;
 
   FeedbackForm(
@@ -29,6 +30,7 @@ class FeedbackForm {
       this.twitter,
       this.youtube,
       this.encodedinfo,
+      this.dayindex,
       this.lastupdated);
 
   factory FeedbackForm.fromJson(dynamic json) {
@@ -46,6 +48,7 @@ class FeedbackForm {
       "${json['twitter']}",
       "${json['youtube']}",
       "${json['encodedinfo']}",
+      "${json['dayindex']}",
       "${json['lastupdated']}",
     );
   }
@@ -65,6 +68,7 @@ class FeedbackForm {
         'twitter': twitter,
         'youtube': youtube,
         'encodedinfo': encodedinfo,
+        'dayindex': dayindex,
         'lastupdated': lastupdated
       };
 }

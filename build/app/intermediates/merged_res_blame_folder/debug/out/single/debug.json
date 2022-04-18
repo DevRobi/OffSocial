@@ -1,9 +1,5 @@
 [
     {
-        "merged": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\build\\app\\intermediates\\res\\merged\\debug\\drawable_launch_background.xml.flat",
-        "source": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\android\\app\\src\\main\\res\\drawable\\launch_background.xml"
-    },
-    {
         "merged": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
