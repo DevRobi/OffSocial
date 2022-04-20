@@ -1,10 +1,29 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\deven\\SynologyDrive\\techtabor\\flutter_application_1\\Anti-socialmedia\\build\\app\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v16\\values-v16.xml",
+            "outputFile": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\build\\app\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v16\\values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\deven\\.gradle\\caches\\transforms-2\\files-2.1\\5f663b08eec19eef9a9d1af662d9025e\\core-1.6.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\bratyo\\.gradle\\caches\\transforms-2\\files-2.1\\7440151f1c7fad824229c97a3e5a338d\\appcompat-1.1.0\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\bratyo\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

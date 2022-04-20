@@ -78,7 +78,7 @@ Map createjsonofusage(
 }
 
 //for this function, error codes are: 0 succes 1
-void sendDataToServer(Map json, String deviceid, int dayindex) {
+void sendDataToServer(Map json, Map rawjson, String deviceid, int dayindex) {
   //extract tracked apps from json
 
   // declare tracking variables
@@ -142,7 +142,7 @@ void sendDataToServer(Map json, String deviceid, int dayindex) {
       twitch.toString(),
       twitter.toString(),
       youtube.toString(),
-      jsonEncode(json),
+      jsonEncode(json) + jsonEncode(rawjson),
       dayindex.toString(),
       DateTime.now().toString());
 
@@ -154,8 +154,18 @@ void sendDataToServer(Map json, String deviceid, int dayindex) {
   });
 }
 
+Map createmapfromeventinfolist(List<EventUsageInfo> infolist) {
+  Map tobejson = {};
+  for (EventUsageInfo info in infolist) {
+    tobejson[info.timeStamp!] = {};
+    tobejson[info.timeStamp!]["eventtype"] = info.eventType;
+    tobejson[info.timeStamp!]["packagename"] = info.packageName;
+  }
+  return tobejson;
+}
+
 void eventprocesser(String deviceid) async {
-  //get shared prefs
+  //get  prefs
   final prefs = await SharedPreferences.getInstance();
   //get start time
   DateTime lastupdated = DateTime.parse(
@@ -183,6 +193,8 @@ void eventprocesser(String deviceid) async {
   splitintodays[day0] = emptylist;
   for (var info in infolist) {
     // we only need open and close events
+    print(info.packageName);
+    print(info.eventType);
     if (int.parse(info.eventType!) == 1 || int.parse(info.eventType!) == 2) {
       String day = dayindexfromtimestamp(int.parse(info.timeStamp!)).toString();
       if (day == day0) {
@@ -201,6 +213,7 @@ void eventprocesser(String deviceid) async {
       sendDataToServer(
           createjsonofusage(splitintodays[day],
               lastupdated.millisecondsSinceEpoch, end.millisecondsSinceEpoch),
+          createmapfromeventinfolist(splitintodays[day]),
           deviceid,
           int.parse(day));
     } else if (tempday0 == day) {
@@ -209,6 +222,7 @@ void eventprocesser(String deviceid) async {
               splitintodays[day],
               lastupdated.millisecondsSinceEpoch,
               int.parse(day) * 86400000 + 86400000),
+          createmapfromeventinfolist(infolist),
           deviceid,
           int.parse(day));
       //if we are sending the data not for the current day, the request period is that whole day
@@ -216,12 +230,14 @@ void eventprocesser(String deviceid) async {
       sendDataToServer(
           createjsonofusage(splitintodays[day], int.parse(day) * 86400000,
               end.millisecondsSinceEpoch),
+          createmapfromeventinfolist(infolist),
           deviceid,
           int.parse(day));
     } else {
       sendDataToServer(
           createjsonofusage(splitintodays[day], int.parse(day) * 86400000,
               int.parse(day) * 86400000 + 86400000),
+          createmapfromeventinfolist(infolist),
           deviceid,
           int.parse(day));
     }

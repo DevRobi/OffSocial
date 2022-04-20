@@ -43,6 +43,8 @@ dependencies:
   binary_codec: ^2.0.3
   usage_stats: ^1.1.1
   f_logs: ^2.0.0
+  background_fetch: ^1.1.0
+  permission_handler: ^9.2.0
 
 dev_dependencies:
   flutter_test:

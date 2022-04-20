@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/app_usage-2.0.0/android" />
+            <option value="$PROJECT_DIR$/../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/background_fetch-1.1.0/android" />
+            <option value="$PROJECT_DIR$/../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/device_info-2.0.3/android" />
+            <option value="$PROJECT_DIR$/../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.12/android" />
+            <option value="$PROJECT_DIR$/../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/platform_device_id-1.0.1/android" />
+            <option value="$PROJECT_DIR$/../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_android-2.0.11/android" />
+            <option value="$PROJECT_DIR$/../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/unique_identifier-0.2.2/android" />
+            <option value="$PROJECT_DIR$/../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/usage_stats-1.1.1/android" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

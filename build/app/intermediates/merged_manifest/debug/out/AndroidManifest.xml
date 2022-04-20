@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="22"
-        android:targetSdkVersion="31" />
+        android:targetSdkVersion="30" />
     <!--
          Flutter needs it to communicate with the running application
          to allow setting breakpoints, to provide hot reload, etc.
@@ -15,9 +15,13 @@
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
-        android:name="android.app.Application"
+        android:name="io.flutter.app.FlutterMultiDexApplication"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
@@ -61,6 +65,22 @@
         <uses-library
             android:name="androidx.window.sidecar"
             android:required="false" />
+
+        <receiver android:name="com.transistorsoft.tsbackgroundfetch.FetchAlarmReceiver" />
+
+        <service
+            android:name="com.transistorsoft.tsbackgroundfetch.FetchJobService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver
+            android:name="com.transistorsoft.tsbackgroundfetch.BootReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

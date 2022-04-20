@@ -1,17 +1,14 @@
 // ignore_for_file: unused_element, unused_field, prefer_typing_uninitialized_variables, prefer_const_constructors, avoid_print
-import 'package_names.dart' as globals;
 import 'package:flutter/material.dart';
-import 'package:app_usage/app_usage.dart';
-import 'package:usage_stats/usage_stats.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:platform_device_id/platform_device_id.dart';
-import 'controller/form_controller.dart';
-import 'model/form.dart';
-import 'dart:convert';
 import 'dart:async';
-import 'package:flutter/services.dart';
 import '../eventprocesser.dart';
 import 'package:f_logs/f_logs.dart';
+import 'package:background_fetch/background_fetch.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:usage_stats/usage_stats.dart';
 
 // defining separated pages
 const _kPages = <String, IconData>{
@@ -20,7 +17,22 @@ const _kPages = <String, IconData>{
   'Stats': Icons.graphic_eq_outlined,
 };
 
-void main() => runApp(MaterialApp(home: MyApp()));
+void backgroundFetchHeadlessTask(HeadlessTask task) async {
+  var taskId = task.taskId;
+  var timeout = task.timeout;
+  if (timeout) {
+    print("[BackgroundFetch] Headless task timed-out: $taskId");
+    BackgroundFetch.finish(taskId);
+    return;
+  }
+  print("[BackgroundFetch] Headless event received: $taskId");
+  BackgroundFetch.finish(taskId);
+}
+
+void main() {
+  runApp(MaterialApp(home: MyApp()));
+  BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -35,7 +47,7 @@ class _MyAppState extends State<MyApp> {
   get floatingActionButton => null;
 
   String? _deviceId;
-  DateTime _start = DateTime.now();
+  int _status = 0;
 
   @override
   void initState() {
@@ -45,8 +57,37 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
+    var status = await Permission.storage.status;
+    if (status.isDenied) {
+      await Permission.storage.request();
+    }
+    UsageStats.grantUsagePermission();
     //init logger
     FLog.applyConfigurations(FLog.getDefaultConfigurations());
+    //background fetch
+    try {
+      var status = await BackgroundFetch.configure(
+          BackgroundFetchConfig(
+              minimumFetchInterval: 15,
+              forceAlarmManager: false,
+              stopOnTerminate: false,
+              startOnBoot: true,
+              enableHeadless: true,
+              requiresBatteryNotLow: false,
+              requiresCharging: false,
+              requiresStorageNotLow: false,
+              requiresDeviceIdle: false,
+              requiredNetworkType: NetworkType.NONE),
+          _onBackgroundFetch,
+          _onBackgroundFetchTimeout);
+      print('[BackgroundFetch] configure success: $status');
+      setState(() {
+        _status = status;
+      });
+    } on Exception catch (e) {
+      print("[BackgroundFetch] configure ERROR: $e");
+    }
+
     String? deviceId;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
@@ -59,15 +100,31 @@ class _MyAppState extends State<MyApp> {
           text: err.toString());
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
     setState(() {
       _deviceId = deviceId;
       print("deviceId->$_deviceId");
     });
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+  }
+
+  void _onBackgroundFetch(String taskId) async {
+    print("[BackgroundFetch] Event received: $taskId");
+    //final prefs = await SharedPreferences.getInstance();
+    //String? deviceId = prefs.getString("deviceId");
+    String deviceid =
+        await PlatformDeviceId.getDeviceId ?? "Failed to get deviceid";
+    eventprocesser(deviceid);
+    print('\n\ndone\n\n');
+    BackgroundFetch.finish(taskId);
+  }
+
+  /// This event fires shortly before your task is about to timeout.  You must finish any outstanding work and call BackgroundFetch.finish(taskId).
+  void _onBackgroundFetchTimeout(String taskId) {
+    print("[BackgroundFetch] TIMEOUT: $taskId");
+    BackgroundFetch.finish(taskId);
   }
 
   @override

@@ -1,4 +1,0 @@
-#Tue Apr 05 00:28:12 CEST 2022
-base.0=C\:\\Users\\deven\\SynologyDrive\\techtabor\\flutter_application_1\\Anti-socialmedia\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
-renamed.0=classes.dex
-path.0=classes.dex

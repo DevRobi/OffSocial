@@ -14,6 +14,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "background_fetch",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/background_fetch-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "binary_codec",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/binary_codec-2.0.3",
       "packageUri": "lib/",
@@ -214,6 +220,36 @@
     {
       "name": "path_provider_windows",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "permission_handler",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/permission_handler-9.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_android",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/permission_handler_android-9.0.2+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_apple",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/permission_handler_apple-9.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_platform_interface",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/permission_handler_platform_interface-3.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "permission_handler_windows",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/permission_handler_windows-0.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -422,7 +458,7 @@
       "languageVersion": "2.15"
     }
   ],
-  "generated": "2022-04-17T18:02:31.550257Z",
+  "generated": "2022-04-19T18:21:09.018080Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }
