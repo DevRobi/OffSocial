@@ -1,7 +1,3 @@
-// TO DO
-
-//check why timezones automagically work
-
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:usage_stats/usage_stats.dart';
@@ -9,7 +5,20 @@ import 'controller/form_controller.dart';
 import 'model/form.dart';
 import 'package_names.dart' as globals;
 
-//event types 1 : open 2 : close
+const List<int> openevents = [1, 19];
+const List<int> closeevents = [2, 23, 20];
+
+List<EventUsageInfo> convertfromservermap(Map servermap) {
+  List<EventUsageInfo> eventUsageInfoList = [];
+  servermap.forEach((key, value) {
+    EventUsageInfo eventUsageInfo = EventUsageInfo(
+        timeStamp: key,
+        packageName: value["packagename"],
+        eventType: value["eventtype"]);
+    eventUsageInfoList.add(eventUsageInfo);
+  });
+  return eventUsageInfoList;
+}
 
 int dayindexfromtimestamp(int timestamp) {
   //there are 86400000 milliseconds in a day
@@ -31,7 +40,7 @@ int processtimeforpackagename(String packagename, List<EventUsageInfo> infolist,
     return 0;
   }
   // if the first event is a close event, we need to add the time from the start of the session
-  if (int.parse(strippedinfolist[0].eventType!) == 2) {
+  if (closeevents.contains(int.parse(strippedinfolist[0].eventType!))) {
     //dividing by 1000 to get seconds from milliseconds
     totalseconds +=
         ((int.parse(strippedinfolist[0].timeStamp!) - starttime) / 1000)
@@ -39,8 +48,11 @@ int processtimeforpackagename(String packagename, List<EventUsageInfo> infolist,
     strippedinfolist.removeAt(0);
   }
   //if the last event is an open event, we need to add the time from the end of the session
-  if (int.parse(strippedinfolist[strippedinfolist.length - 1].eventType!) ==
-      1) {
+  if (strippedinfolist.isEmpty) {
+    return totalseconds;
+  }
+  if (openevents.contains(
+      int.parse(strippedinfolist[strippedinfolist.length - 1].eventType!))) {
     //dividing by 1000 to get seconds from milliseconds
     totalseconds += ((endtime -
                 int.parse(
@@ -49,13 +61,28 @@ int processtimeforpackagename(String packagename, List<EventUsageInfo> infolist,
         .round();
     strippedinfolist.removeAt(strippedinfolist.length - 1);
   }
+  if (strippedinfolist.isEmpty) {
+    return totalseconds;
+  }
   // now we have a list starting with an open event and ending with a close event, and of even length
   // we need to add the time between the events
-  for (int i = 0; i < strippedinfolist.length - 1; i += 2) {
-    totalseconds += (int.parse(strippedinfolist[i + 1].timeStamp!) -
-            int.parse(strippedinfolist[i].timeStamp!)) ~/
-        1000;
+  for (int i = 0; i < strippedinfolist.length; i += 1) {
+    if (openevents.contains(int.parse(strippedinfolist[i].eventType!))) {
+      //finding the next close event
+      for (int j = i + 1; j < strippedinfolist.length; j += 1) {
+        if (closeevents.contains(int.parse(strippedinfolist[j].eventType!))) {
+          //dividing by 1000 to get seconds from milliseconds
+          totalseconds += ((int.parse(strippedinfolist[j].timeStamp!) -
+                      int.parse(strippedinfolist[i].timeStamp!)) /
+                  1000)
+              .round();
+          i = j;
+          break;
+        }
+      }
+    }
   }
+
   return totalseconds;
 }
 
@@ -172,6 +199,7 @@ void eventprocesser(String deviceid) async {
       prefs.getString('lastupdated') ?? DateTime.now().toString());
   //write updated time
   DateTime end = DateTime.now();
+
   prefs.setString('lastupdated', end.toString());
 
   //getting infos
@@ -180,6 +208,7 @@ void eventprocesser(String deviceid) async {
   if (infolist.isEmpty) {
     return;
   }
+
   //split data to days
   //it will be a map with the day as key and the list of events as value
   var splitintodays = {};
@@ -188,35 +217,34 @@ void eventprocesser(String deviceid) async {
   // if all the events will be counted on this day, day0 goes to the next day
   String day0 =
       dayindexfromtimestamp(int.parse(infolist[0].timeStamp!)).toString();
-  String tempday0 = day0;
   List<EventUsageInfo> emptylist = [];
   splitintodays[day0] = emptylist;
   for (var info in infolist) {
     // we only need open and close events
-    print(info.packageName);
-    print(info.eventType);
-    if (int.parse(info.eventType!) == 1 || int.parse(info.eventType!) == 2) {
+    int eventtype = int.parse(info.eventType!);
+    if (openevents.contains(eventtype) || closeevents.contains(eventtype)) {
+      //get dayindex
       String day = dayindexfromtimestamp(int.parse(info.timeStamp!)).toString();
-      if (day == day0) {
-        splitintodays[day0].add(info);
-      } else {
-        splitintodays[day] = emptylist;
-        splitintodays[day].add(info);
-        day0 = day;
+      if (day != day0) {
+        if (splitintodays.containsKey(day) != true) {
+          emptylist = [];
+          splitintodays[day] = emptylist;
+        }
       }
+      splitintodays[day].add(info);
     }
   }
   // we send all the data to the server, day by day
   for (var day in splitintodays.keys) {
     // if it is on the same day as sending, the end of request is now
-    if (tempday0 == day0) {
+    if (day0 == day && splitintodays.keys.length == 1) {
       sendDataToServer(
           createjsonofusage(splitintodays[day],
               lastupdated.millisecondsSinceEpoch, end.millisecondsSinceEpoch),
           createmapfromeventinfolist(splitintodays[day]),
           deviceid,
           int.parse(day));
-    } else if (tempday0 == day) {
+    } else if (day0 == day) {
       sendDataToServer(
           createjsonofusage(
               splitintodays[day],
@@ -226,7 +254,10 @@ void eventprocesser(String deviceid) async {
           deviceid,
           int.parse(day));
       //if we are sending the data not for the current day, the request period is that whole day
-    } else if (day == day0) {
+    } else if (day ==
+        dayindexfromtimestamp(
+                int.parse(infolist[infolist.length - 1].timeStamp!))
+            .toString()) {
       sendDataToServer(
           createjsonofusage(splitintodays[day], int.parse(day) * 86400000,
               end.millisecondsSinceEpoch),

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\windows\_deps\nuget-subbuild\CMakeFiles\672ef26a5d00d085036b809cf1497d3a\nuget-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\windows\_deps\nuget-subbuild\CMakeFiles\672ef26a5d00d085036b809cf1497d3a\nuget-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\windows\_deps\nuget-subbuild\CMakeFiles\672ef26a5d00d085036b809cf1497d3a\nuget-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\windows\_deps\nuget-subbuild\CMakeFiles\672ef26a5d00d085036b809cf1497d3a\nuget-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\windows\_deps\nuget-subbuild\CMakeFiles\672ef26a5d00d085036b809cf1497d3a\nuget-populate-copyfile.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\windows\_deps\nuget-subbuild\CMakeFiles\672ef26a5d00d085036b809cf1497d3a\nuget-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\windows\_deps\nuget-subbuild\CMakeFiles\672ef26a5d00d085036b809cf1497d3a\nuget-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\windows\_deps\nuget-subbuild\CMakeFiles\672ef26a5d00d085036b809cf1497d3a\nuget-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\windows\_deps\nuget-subbuild\CMakeFiles\672ef26a5d00d085036b809cf1497d3a\nuget-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\windows\_deps\nuget-subbuild\CMakeFiles\548e2cf5d5ac3c8abb03f6736fdebba8\nuget-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\windows\_deps\nuget-subbuild\CMakeFiles\f2eac1ed2d2ea4ff0b4b17951db759f9\nuget-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\windows\_deps\nuget-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\bratyo\Documents\code\techtabor\main_android\OffSocial\build\windows\_deps\nuget-subbuild\CMakeFiles\nuget-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{A47444E7-6E6B-3BA8-9CDA-C0FB3CDBA137}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
