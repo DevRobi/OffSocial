@@ -45,6 +45,17 @@ class FormController {
     }
   }
 
+  //fetch user data from server
+  Future<List> GetUserData() async {
+    try {
+      final response = await http.get(URL);
+      final jsonData = convert.jsonDecode(response.body) as List;
+      return jsonData;
+    } catch (err) {
+      return ["null"];
+    }
+  }
+
   /// Async function which loads feedback from endpoint URL and returns List.
   Future<List<FeedbackForm>> getFeedbackList() async {
     return await http.get(URL).then((response) {
