@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:platform_device_id/platform_device_id.dart';
+import 'package:tracker/controller/form_controller.dart';
 import 'dart:async';
 import '../eventprocesser.dart';
 import 'package:f_logs/f_logs.dart';
@@ -127,6 +128,30 @@ class _MyAppState extends State<MyApp> {
     BackgroundFetch.finish(taskId);
   }
 
+  //Get request on the server
+  Future<List> FetchUserData() async {
+    FormController formController = FormController();
+    List list = await formController.GetUserData();
+    return list;
+  }
+
+  //Sorting users
+  Future<List> SortUsers(Future<List> jsondata) async {
+    List list = await jsondata;
+    List<int> scores = [];
+    for (Map map in list) {
+      Map newmap = Map.from(map);
+      if (newmap['score'].runtimeType == int) {
+        scores.add((newmap)['score']);
+      }
+    }
+
+    scores.sort();
+    List<int> final_scores = scores.reversed.toList();
+    return final_scores;
+    //add these values to a GUI List element --> order the names --> leaderboard.
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -139,6 +164,7 @@ class _MyAppState extends State<MyApp> {
             FloatingActionButton(
                 onPressed: () {
                   initPlatformState();
+                  SortUsers(FetchUserData());
                   eventprocesser(_deviceId!);
                 },
                 child: const Icon(Icons.refresh)),
