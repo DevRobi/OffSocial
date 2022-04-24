@@ -148,7 +148,21 @@ class _MyAppState extends State<MyApp> {
 
     scores.sort();
     List<int> final_scores = scores.reversed.toList();
-    return final_scores;
+    print(final_scores);
+    List<String> device_ids = [];
+    for (int score in final_scores) {
+      for (Map map in list) {
+        
+        Map newmap = Map.from(map);
+        
+        if (newmap['score'] == score &&
+            device_ids.contains(newmap['deviceId']) == false) {
+          device_ids.add(newmap['deviceId']);
+        }
+      }
+    }
+    
+    return device_ids;
     //add these values to a GUI List element --> order the names --> leaderboard.
   }
 
