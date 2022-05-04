@@ -69,7 +69,7 @@ class _MyAppState extends State<MyApp> {
     try {
       var status = await BackgroundFetch.configure(
           BackgroundFetchConfig(
-              minimumFetchInterval: 15,
+              minimumFetchInterval: 5,
               forceAlarmManager: false,
               stopOnTerminate: false,
               startOnBoot: true,
@@ -78,7 +78,7 @@ class _MyAppState extends State<MyApp> {
               requiresCharging: false,
               requiresStorageNotLow: false,
               requiresDeviceIdle: false,
-              requiredNetworkType: NetworkType.NONE),
+              requiredNetworkType: NetworkType.ANY),
           _onBackgroundFetch,
           _onBackgroundFetchTimeout);
       print('[BackgroundFetch] configure success: $status');
@@ -113,8 +113,6 @@ class _MyAppState extends State<MyApp> {
 
   void _onBackgroundFetch(String taskId) async {
     print("[BackgroundFetch] Event received: $taskId");
-    //final prefs = await SharedPreferences.getInstance();
-    //String? deviceId = prefs.getString("deviceId");
     String deviceid =
         await PlatformDeviceId.getDeviceId ?? "Failed to get deviceid";
     eventprocesser(deviceid);
@@ -164,7 +162,7 @@ class _MyAppState extends State<MyApp> {
             FloatingActionButton(
                 onPressed: () {
                   initPlatformState();
-                  SortUsers(FetchUserData());
+                  //SortUsers(FetchUserData());
                   eventprocesser(_deviceId!);
                 },
                 child: const Icon(Icons.refresh)),

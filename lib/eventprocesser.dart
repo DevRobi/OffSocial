@@ -159,7 +159,7 @@ void sendDataToServer(Map json, Map rawjson, String deviceid, int dayindex) {
   FeedbackForm feedbackForm = FeedbackForm(
       deviceid,
       "V2.0",
-      ((totalseconds / 60).round()).toString(),
+      ((-totalseconds / 60).round()).toString(),
       facebook.toString(),
       instagram.toString(),
       pinterest.toString(),
@@ -175,7 +175,7 @@ void sendDataToServer(Map json, Map rawjson, String deviceid, int dayindex) {
 
   //send to server
   FormController formController = FormController();
-
+  print(feedbackForm.toJson().toString());
   formController.submitForm(feedbackForm, (String response) {
     return;
   });

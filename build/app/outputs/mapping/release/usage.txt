@@ -7204,7 +7204,6 @@ io.flutter.embedding.engine.FlutterEngineConnectionRegistry$FlutterEngineService
     private final java.util.Set onModeChangeListeners
 kotlin.io.FilesKt__FileTreeWalkKt
 kotlin.sequences.DropSequence$iterator$1
-kotlinx.coroutines.selects.SelectBuilderImpl$onTimeout$$inlined$Runnable$1
 io.flutter.embedding.android.FlutterActivity:
     public static android.content.Intent createDefaultIntent(android.content.Context)
     public static io.flutter.embedding.android.FlutterActivity$NewEngineIntentBuilder withNewEngine()
@@ -7212,6 +7211,7 @@ io.flutter.embedding.android.FlutterActivity:
     void setDelegate(io.flutter.embedding.android.FlutterActivityAndFragmentDelegate)
     public void updateSystemUiOverlays()
     private static final java.lang.String TAG
+kotlinx.coroutines.selects.SelectBuilderImpl$onTimeout$$inlined$Runnable$1
 com.google.common.collect.LinkedHashMultimap$ValueEntry
 kotlinx.coroutines.flow.SharingStarted$Companion
 androidx.appcompat.app.AppCompatDelegate$NightMode
@@ -14590,5 +14590,5 @@ io.flutter.view.FlutterNativeView:
     public synthetic void setMessageHandler(java.lang.String,io.flutter.plugin.common.BinaryMessenger$BinaryMessageHandler,io.flutter.plugin.common.BinaryMessenger$TaskQueue)
 androidx.appcompat.view.StandaloneActionMode:
     private boolean mFocusable
-io.flutter.plugin.platform.PlatformView$-CC
 io.flutter.plugin.common.BinaryMessenger$-CC
+io.flutter.plugin.platform.PlatformView$-CC

@@ -27,6 +27,7 @@ class FormController {
     LogsConfig config = FLog.getDefaultConfigurations();
     FLog.applyConfigurations(config);
     try {
+      print(feedbackForm.toJson());
       await http.post(URL, body: feedbackForm.toJson()).then((response) async {
         if (response.statusCode == 302) {
           var url = Uri.parse(response.headers['location'].toString());
