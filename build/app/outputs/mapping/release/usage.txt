@@ -14590,5 +14590,5 @@ io.flutter.view.FlutterNativeView:
     public synthetic void setMessageHandler(java.lang.String,io.flutter.plugin.common.BinaryMessenger$BinaryMessageHandler,io.flutter.plugin.common.BinaryMessenger$TaskQueue)
 androidx.appcompat.view.StandaloneActionMode:
     private boolean mFocusable
-io.flutter.plugin.common.BinaryMessenger$-CC
 io.flutter.plugin.platform.PlatformView$-CC
+io.flutter.plugin.common.BinaryMessenger$-CC
