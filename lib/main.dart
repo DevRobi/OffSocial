@@ -18,6 +18,56 @@ const _kPages = <String, IconData>{
   'Stats': Icons.graphic_eq_outlined,
 };
 
+List<String> entries = [];
+//Get request on the server
+Future<List> FetchUserData() async {
+  FormController formController = FormController();
+  List list = await formController.GetUserData();
+  return list;
+}
+
+//Sorting users
+Future<List> SortUsers(Future<List> jsondata) async {
+  List list = await jsondata;
+
+  List<int> scores = [];
+  for (Map map in list) {
+    Map newmap = Map.from(map);
+    if (newmap['score'].runtimeType == int) {
+      scores.add((newmap)['score']);
+    }
+  }
+
+  scores.sort();
+  List<int> final_scores = scores.reversed.toList();
+  List<String> device_ids = [];
+  for (int score in final_scores) {
+    for (Map map in list) {
+      Map newmap = Map.from(map);
+
+      if (newmap['score'] == score &&
+          device_ids.contains(newmap['deviceId']) == false) {
+        device_ids.add(newmap['deviceId']);
+      }
+    }
+  }
+  for (String s in device_ids) {
+    entries.add(s);
+  }
+  print(device_ids);
+  return device_ids;
+  //add these values to a GUI List element --> order the names --> leaderboard.
+}
+
+Future<List> getList() {
+  return Future.value([1, 2, 3, 4]);
+}
+
+void addItem() {
+  List list = [];
+  print(list);
+}
+
 void backgroundFetchHeadlessTask(HeadlessTask task) async {
   var taskId = task.taskId;
   var timeout = task.timeout;
@@ -43,6 +93,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final pageContoller = PageController(initialPage: 0);
   // stlying of the bottom bar
   final TabStyle _tabStyle = TabStyle.fixed;
   get floatingActionButton => null;
@@ -53,6 +104,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    SortUsers(FetchUserData());
     initPlatformState();
   }
 
@@ -126,44 +178,7 @@ class _MyAppState extends State<MyApp> {
     BackgroundFetch.finish(taskId);
   }
 
-  //Get request on the server
-  Future<List> FetchUserData() async {
-    FormController formController = FormController();
-    List list = await formController.GetUserData();
-    return list;
-  }
-
-  //Sorting users
-  Future<List> SortUsers(Future<List> jsondata) async {
-    List list = await jsondata;
-    List<int> scores = [];
-    for (Map map in list) {
-      Map newmap = Map.from(map);
-      if (newmap['score'].runtimeType == int) {
-        scores.add((newmap)['score']);
-      }
-    }
-
-    scores.sort();
-    List<int> final_scores = scores.reversed.toList();
-    print(final_scores);
-    List<String> device_ids = [];
-    for (int score in final_scores) {
-      for (Map map in list) {
-        
-        Map newmap = Map.from(map);
-        
-        if (newmap['score'] == score &&
-            device_ids.contains(newmap['deviceId']) == false) {
-          device_ids.add(newmap['deviceId']);
-        }
-      }
-    }
-    
-    return device_ids;
-    //add these values to a GUI List element --> order the names --> leaderboard.
-  }
-
+/*
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -176,7 +191,7 @@ class _MyAppState extends State<MyApp> {
             FloatingActionButton(
                 onPressed: () {
                   initPlatformState();
-                  //SortUsers(FetchUserData());
+                  SortUsers(FetchUserData());
                   eventprocesser(_deviceId!);
                 },
                 child: const Icon(Icons.refresh)),
@@ -197,6 +212,71 @@ class _MyAppState extends State<MyApp> {
           ],
           onTap: (int i) => print('click index=$i'),
         ),
+      ),
+    );
+  }*/
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Pageview Demo'),
+        backgroundColor: Colors.deepPurple,
+      ),
+      body: PageView(
+        pageSnapping: true,
+        controller: pageContoller,
+        children: [
+          Container(
+              color: Colors.white10,
+              alignment: Alignment.center,
+              //FutureBuilder
+              child: Column(
+                //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Expanded(child: Text("Weekly Leaderboard", style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.normal,
+                              decoration: TextDecoration.none,
+                              decorationColor: Colors.black54,
+                              decorationStyle: TextDecorationStyle.wavy,
+                              fontFamily: "alex"))),
+                  Expanded(
+                    flex: 2,
+                    child: FutureBuilder<List>(
+                        future: SortUsers(FetchUserData()),
+                        builder: (context, future) {
+                          if (!future.hasData) {
+                            return Container();
+                          } else {
+                            List? list = future.data;
+                            return ListView.builder(
+                                itemCount: list?.length,
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                padding: const EdgeInsets.all(20.0),
+                                itemBuilder: (context, index) {
+
+                                  return Card(
+                                    child: ListTile(
+                                      onTap: () {},
+                                      title: Text(list![index].toString()),
+                                    ),
+                                  );
+                                });
+                          }
+                          
+                        }),
+                  ),
+                ],
+              )),
+          Container(color: Colors.red),
+          Container(
+            color: Colors.brown,
+          ),
+        ],
       ),
     );
   }
