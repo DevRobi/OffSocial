@@ -63,6 +63,16 @@ Future<List> SortUsers(Future<List> jsondata) async {
   //add these values to a GUI List element --> order the names --> leaderboard.
 }
 
+Future<int> getCurrentScore(Future<List> lists, String? deviceId) async {
+  List Lists = await lists;
+  List device_ids = Lists[0];
+  List scores = Lists[1];
+  for (int i = 0; i < device_ids.length; i++) {
+    if (device_ids[i] == deviceId) return scores[i];
+  }
+  return 0;
+}
+
 Future<List> getList() {
   return Future.value([1, 2, 3, 4]);
 }
@@ -97,7 +107,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final pageContoller = PageController(initialPage: 0);
+  final pageContoller = PageController(initialPage: 1);
   // stlying of the bottom bar
   final TabStyle _tabStyle = TabStyle.fixed;
   get floatingActionButton => null;
@@ -182,44 +192,6 @@ class _MyAppState extends State<MyApp> {
     BackgroundFetch.finish(taskId);
   }
 
-/*
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      initialIndex: 2,
-      child: Scaffold(
-        body: Column(
-          children: [
-            const Divider(),
-            FloatingActionButton(
-                onPressed: () {
-                  initPlatformState();
-                  SortUsers(FetchUserData());
-                  eventprocesser(_deviceId!);
-                },
-                child: const Icon(Icons.refresh)),
-            Expanded(
-              child: TabBarView(
-                children: [
-                  for (final icon in _kPages.values) Icon(icon, size: 64),
-                ],
-              ),
-            ),
-          ],
-        ),
-        bottomNavigationBar: ConvexAppBar(
-          style: _tabStyle,
-          items: <TabItem>[
-            for (final entry in _kPages.entries)
-              TabItem(icon: entry.value, title: entry.key),
-          ],
-          onTap: (int i) => print('click index=$i'),
-        ),
-      ),
-    );
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -251,29 +223,21 @@ class _MyAppState extends State<MyApp> {
                               fontFamily: "alex"))),
                   Expanded(
                     flex: 2,
-                    child: FutureBuilder<List>(
-                        future: SortUsers(FetchUserData()),
+                    child: FutureBuilder<int>(
+                        future: getCurrentScore(
+                            SortUsers(FetchUserData()), _deviceId),
                         builder: (context, future) {
                           if (!future.hasData) {
                             return Container();
                           } else {
-                            List? list = future.data;
-                            print(list?[0]);
-                            print(list?[1]);
-                            return const DecoratedBox(
-                              decoration: BoxDecoration(
-                                gradient: RadialGradient(
-                                  center: Alignment(-0.5, -0.6),
-                                  radius: 0.15,
-                                  colors: <Color>[
-                                    Color(0xFFEEEEEE),
-                                    Color(0xFF111133),
-                                  ],
-                                  stops: <double>[0.9, 1.0],
-                                ),
-                              ),
-                              
-                              child: Text("Your current score is: "),
+                            int? value = future.data;
+                            return Column(
+                              children: <Widget>[
+                                Expanded(
+                                  child: Text("Your current score: " +
+                                      value.toString()),
+                                )
+                              ],
                             );
                           }
                         }),
