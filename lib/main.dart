@@ -55,7 +55,11 @@ Future<List> SortUsers(Future<List> jsondata) async {
     entries.add(s);
   }
   print(device_ids);
-  return device_ids;
+  List<List> final_list = [];
+  final_list.add(device_ids);
+  final_list.add(final_scores);
+
+  return final_list;
   //add these values to a GUI List element --> order the names --> leaderboard.
 }
 
@@ -234,7 +238,58 @@ class _MyAppState extends State<MyApp> {
               child: Column(
                 //mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Expanded(child: Text("Weekly Leaderboard", style: TextStyle(
+                  Expanded(
+                      child: Text("Your Stats. Now.",
+                          style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.normal,
+                              decoration: TextDecoration.underline,
+                              decorationColor: Colors.black54,
+                              decorationStyle: TextDecorationStyle.solid,
+                              fontFamily: "alex"))),
+                  Expanded(
+                    flex: 2,
+                    child: FutureBuilder<List>(
+                        future: SortUsers(FetchUserData()),
+                        builder: (context, future) {
+                          if (!future.hasData) {
+                            return Container();
+                          } else {
+                            List? list = future.data;
+                            print(list?[0]);
+                            print(list?[1]);
+                            return const DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: RadialGradient(
+                                  center: Alignment(-0.5, -0.6),
+                                  radius: 0.15,
+                                  colors: <Color>[
+                                    Color(0xFFEEEEEE),
+                                    Color(0xFF111133),
+                                  ],
+                                  stops: <double>[0.9, 1.0],
+                                ),
+                              ),
+                              
+                              child: Text("Your current score is: "),
+                            );
+                          }
+                        }),
+                  ),
+                ],
+              )),
+          Container(
+              color: Colors.white10,
+              alignment: Alignment.center,
+              //FutureBuilder
+              child: Column(
+                //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Expanded(
+                      child: Text("Weekly Leaderboard",
+                          style: TextStyle(
                               color: Colors.black87,
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
@@ -252,27 +307,36 @@ class _MyAppState extends State<MyApp> {
                             return Container();
                           } else {
                             List? list = future.data;
+                            print(list?[0]);
+                            print(list?[1]);
                             return ListView.builder(
-                                itemCount: list?.length,
+                                itemCount:
+                                    list?[0].length, //length of players list
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
                                 padding: const EdgeInsets.all(20.0),
                                 itemBuilder: (context, index) {
-
                                   return Card(
                                     child: ListTile(
                                       onTap: () {},
-                                      title: Text(list![index].toString()),
+                                      title: Text(
+                                          (index + 1).toString() +
+                                              ". " +
+                                              list![0][index].toString() +
+                                              " " +
+                                              list[1][index].toString() +
+                                              " pts",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold)),
                                     ),
                                   );
                                 });
                           }
-                          
                         }),
                   ),
                 ],
               )),
-          Container(color: Colors.red),
           Container(
             color: Colors.brown,
           ),
