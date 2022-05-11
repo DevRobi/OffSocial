@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\build\\shared_preferences_android\\intermediates\\res\\merged\\debug\\values-in\\values-in.xml",
+            "outputFile": "C:\\src\\projects\\OffSocial\\build\\shared_preferences_android\\intermediates\\res\\merged\\debug\\values-in\\values-in.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\bratyo\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\values-in\\values-in.xml",
+                    "source": "C:\\Users\\Peter\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\values-in\\values-in.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\build\\shared_preferences_android\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-in\\values-in.xml",
+            "outputFile": "C:\\src\\projects\\OffSocial\\build\\shared_preferences_android\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-in\\values-in.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\bratyo\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\values-in\\values-in.xml",
+                    "source": "C:\\Users\\Peter\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\values-in\\values-in.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

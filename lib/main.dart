@@ -1,32 +1,34 @@
-// ignore_for_file: unused_element, unused_field, prefer_typing_uninitialized_variables, prefer_const_constructors, avoid_print
+// ignore_for_file: unused_element, unused_field, prefer_typing_uninitialized_variables, prefer_const_constructors, avoid_print, unused_import
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:tracker/controller/form_controller.dart';
-import 'dart:async';
-import '../eventprocesser.dart';
 import 'package:f_logs/f_logs.dart';
 import 'package:background_fetch/background_fetch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:usage_stats/usage_stats.dart';
+import 'package:path_provider/path_provider.dart';
 
-// defining separated pages
-const _kPages = <String, IconData>{
-  'Profile': Icons.account_circle,
-  'Home': Icons.house_sharp,
-  'Stats': Icons.graphic_eq_outlined,
-};
+
+import 'dart:async';
+
+import 'interface/pages.dart';
+import 'controller/eventprocesser.dart';
+
+
+
 
 List<String> entries = [];
-//Get request on the server
+
+// Get request on the server
 Future<List> FetchUserData() async {
   FormController formController = FormController();
   List list = await formController.GetUserData();
   return list;
 }
 
-//Sorting users
+// Sorting users
 Future<List> SortUsers(Future<List> jsondata) async {
   List list = await jsondata;
 
@@ -60,7 +62,7 @@ Future<List> SortUsers(Future<List> jsondata) async {
   final_list.add(final_scores);
 
   return final_list;
-  //add these values to a GUI List element --> order the names --> leaderboard.
+  // add these values to a GUI List element --> order the names --> leaderboard.
 }
 
 Future<int> getCurrentScore(Future<List> lists, String? deviceId) async {
@@ -112,7 +114,7 @@ class _MyAppState extends State<MyApp> {
   final TabStyle _tabStyle = TabStyle.fixed;
   get floatingActionButton => null;
 
-  String? _deviceId;
+  String? deviceId;
   int _status = 0;
 
   @override
@@ -125,7 +127,7 @@ class _MyAppState extends State<MyApp> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     var status = await Permission.storage.status;
-    if (status.isDenied) {
+    if (!status.isGranted) {
       await Permission.storage.request();
     }
     UsageStats.grantUsagePermission();
@@ -168,8 +170,8 @@ class _MyAppState extends State<MyApp> {
     }
 
     setState(() {
-      _deviceId = deviceId;
-      print("deviceId->$_deviceId");
+      deviceId = deviceId;
+      print("deviceId->$deviceId");
     });
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
@@ -196,116 +198,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pageview Demo'),
-        backgroundColor: Colors.deepPurple,
+        centerTitle: true,
+        title: Text('OffSocial', style: TextStyle(color: Color.fromARGB(255, 43, 57, 116)), textScaleFactor: 1.9),
+        backgroundColor: Color.fromARGB(255, 177, 153, 216),
       ),
-      body: PageView(
-        pageSnapping: true,
-        controller: pageContoller,
-        children: [
-          Container(
-              color: Colors.white10,
-              alignment: Alignment.center,
-              //FutureBuilder
-              child: Column(
-                //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Expanded(
-                      child: Text("Your Stats. Now.",
-                          style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.normal,
-                              decoration: TextDecoration.underline,
-                              decorationColor: Colors.black54,
-                              decorationStyle: TextDecorationStyle.solid,
-                              fontFamily: "alex"))),
-                  Expanded(
-                    flex: 2,
-                    child: FutureBuilder<int>(
-                        future: getCurrentScore(
-                            SortUsers(FetchUserData()), _deviceId),
-                        builder: (context, future) {
-                          if (!future.hasData) {
-                            return Container();
-                          } else {
-                            int? value = future.data;
-                            return Column(
-                              children: <Widget>[
-                                Expanded(
-                                  child: Text("Your current score: " +
-                                      value.toString()),
-                                )
-                              ],
-                            );
-                          }
-                        }),
-                  ),
-                ],
-              )),
-          Container(
-              color: Colors.white10,
-              alignment: Alignment.center,
-              //FutureBuilder
-              child: Column(
-                //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Expanded(
-                      child: Text("Weekly Leaderboard",
-                          style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.normal,
-                              decoration: TextDecoration.none,
-                              decorationColor: Colors.black54,
-                              decorationStyle: TextDecorationStyle.wavy,
-                              fontFamily: "alex"))),
-                  Expanded(
-                    flex: 2,
-                    child: FutureBuilder<List>(
-                        future: SortUsers(FetchUserData()),
-                        builder: (context, future) {
-                          if (!future.hasData) {
-                            return Container();
-                          } else {
-                            List? list = future.data;
-                            print(list?[0]);
-                            print(list?[1]);
-                            return ListView.builder(
-                                itemCount:
-                                    list?[0].length, //length of players list
-                                scrollDirection: Axis.vertical,
-                                shrinkWrap: true,
-                                padding: const EdgeInsets.all(20.0),
-                                itemBuilder: (context, index) {
-                                  return Card(
-                                    child: ListTile(
-                                      onTap: () {},
-                                      title: Text(
-                                          (index + 1).toString() +
-                                              ". " +
-                                              list![0][index].toString() +
-                                              " " +
-                                              list[1][index].toString() +
-                                              " pts",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold)),
-                                    ),
-                                  );
-                                });
-                          }
-                        }),
-                  ),
-                ],
-              )),
-          Container(
-            color: Colors.brown,
-          ),
-        ],
-      ),
+      body: PageViewDemo(),
     );
   }
 }

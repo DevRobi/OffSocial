@@ -1,18 +1,18 @@
 [
     {
-        "merged": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\build\\path_provider_android\\intermediates\\res\\merged\\debug\\drawable\\notification_icon_background.xml",
-        "source": "C:\\Users\\bratyo\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\drawable\\notification_icon_background.xml"
+        "merged": "C:\\src\\projects\\OffSocial\\build\\path_provider_android\\intermediates\\res\\merged\\debug\\drawable\\notification_icon_background.xml",
+        "source": "C:\\Users\\Peter\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\drawable\\notification_icon_background.xml"
     },
     {
-        "merged": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\build\\path_provider_android\\intermediates\\res\\merged\\debug\\drawable\\notification_bg.xml",
-        "source": "C:\\Users\\bratyo\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\drawable\\notification_bg.xml"
+        "merged": "C:\\src\\projects\\OffSocial\\build\\path_provider_android\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
+        "source": "C:\\Users\\Peter\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\drawable\\notification_tile_bg.xml"
     },
     {
-        "merged": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\build\\path_provider_android\\intermediates\\res\\merged\\debug\\drawable\\notification_bg_low.xml",
-        "source": "C:\\Users\\bratyo\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\drawable\\notification_bg_low.xml"
+        "merged": "C:\\src\\projects\\OffSocial\\build\\path_provider_android\\intermediates\\res\\merged\\debug\\drawable\\notification_bg.xml",
+        "source": "C:\\Users\\Peter\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\drawable\\notification_bg.xml"
     },
     {
-        "merged": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\build\\path_provider_android\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
-        "source": "C:\\Users\\bratyo\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\drawable\\notification_tile_bg.xml"
+        "merged": "C:\\src\\projects\\OffSocial\\build\\path_provider_android\\intermediates\\res\\merged\\debug\\drawable\\notification_bg_low.xml",
+        "source": "C:\\Users\\Peter\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\drawable\\notification_bg_low.xml"
     }
 ]

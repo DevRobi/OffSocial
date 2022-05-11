@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\build\\unique_identifier\\intermediates\\res\\merged\\release\\values-sw\\values-sw.xml",
+            "outputFile": "C:\\src\\projects\\OffSocial\\build\\unique_identifier\\intermediates\\res\\merged\\release\\values-sw\\values-sw.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\bratyo\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\values-sw\\values-sw.xml",
+                    "source": "C:\\Users\\Peter\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\values-sw\\values-sw.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\bratyo\\Documents\\code\\techtabor\\main_android\\OffSocial\\build\\unique_identifier\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-sw\\values-sw.xml",
+            "outputFile": "C:\\src\\projects\\OffSocial\\build\\unique_identifier\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-sw\\values-sw.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\bratyo\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\values-sw\\values-sw.xml",
+                    "source": "C:\\Users\\Peter\\.gradle\\caches\\transforms-2\\files-2.1\\be6c37f920226f799c8e079c11ae9b32\\core-1.6.0\\res\\values-sw\\values-sw.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
