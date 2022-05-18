@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, duplicate_ignore, unused_import
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, duplicate_ignore, unused_import, unused_field, avoid_print
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:platform_device_id/platform_device_id.dart';
@@ -26,8 +26,9 @@ class PageViewDemo extends StatefulWidget {
   @override
   _PageViewDemoState createState() => _PageViewDemoState();
 }
-
 class _PageViewDemoState extends State<PageViewDemo> {
+
+  int _selectedIndex = 1;
 
   final PageController _controller = PageController(
     initialPage: 1,
@@ -41,13 +42,66 @@ class _PageViewDemoState extends State<PageViewDemo> {
 
   @override
   Widget build(BuildContext context) {
-    return PageView(
-      controller: _controller,
-      children: [
-        MyPageLeftWidget(),  // The Page on the left
-        MyPageMainWidget(),  // Main Page
-        MyPageRightWidget(), // The Page on the right
-      ],
+    return Scaffold(  
+
+      // The bottom navigator bar
+      bottomNavigationBar: BottomNavigationBar(
+        iconSize: 30,
+        type: BottomNavigationBarType.shifting,
+        selectedFontSize: 20,
+        selectedIconTheme: IconThemeData(color: Color.fromARGB(218, 52, 51, 51)),
+        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        unselectedIconTheme: IconThemeData(
+          color: Colors.deepOrangeAccent,
+          ),
+
+        selectedItemColor: Color.fromARGB(255, 64, 156, 255),
+        
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.portrait), 
+            label: '-',
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home), 
+            label: '-',
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people), 
+            label: '-',
+          )
+        ],
+        onTap: (int index) {
+          setState(() {
+            _controller.animateToPage(
+              index,
+              duration: const Duration(milliseconds: 200),
+              curve: Curves.easeInOut,
+            );
+          });
+        },
+        currentIndex: _selectedIndex,
+      ),
+
+      // The 3 main pages (pageview)
+      body: PageView(
+        controller: _controller,
+        children: <Widget>[
+          StatisticsPage(),
+          LeaderboardPage(),
+          FriendsPage(),
+        ],
+        onPageChanged: (page) {
+          setState(() {
+            _selectedIndex = page;
+          });
+        },
+      ),
+
     );
   }
 }
@@ -56,8 +110,8 @@ class _PageViewDemoState extends State<PageViewDemo> {
 
 
 // The Page on the Left side (SubWidget of PageViewDemo)
-class MyPageLeftWidget extends StatelessWidget {
-  const MyPageLeftWidget({Key? key}) : super(key: key);
+class StatisticsPage extends StatelessWidget {
+  const StatisticsPage({Key? key}) : super(key: key);
 
   String? get deviceId => null;
 
@@ -72,7 +126,13 @@ class MyPageLeftWidget extends StatelessWidget {
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.normal,
-                  decoration: TextDecoration.overline,
+                  shadows: [
+                    Shadow(
+                      color: Colors.black,
+                      blurRadius: 1,
+                      offset: Offset(0.5, 0.5),
+                    ),
+                  ],
                   decorationColor: Colors.black54,
                   decorationStyle: TextDecorationStyle.solid,
                   fontFamily: "alex"),
@@ -87,17 +147,62 @@ class MyPageLeftWidget extends StatelessWidget {
                             SortUsers(FetchUserData()), deviceId),
                         builder: (context, future) {
                           if (!future.hasData) {
-                            return Container();
-                          } else {
-                            int? value = future.data;
-                            return Column(
+                            return ListView(
+                              physics: BouncingScrollPhysics(),
+                              padding: const EdgeInsets.all(10),
                               children: <Widget>[
-                                Expanded(
-                                  child: Text("Your current score: " +
-                                      value.toString(), style: TextStyle(fontSize: 25)),
-                                ),
-                                Expanded(
-                                  child: Text("Your best score: ", style: TextStyle(fontSize: 25)),)
+                                Text("Your current score: " +
+                                    "Loading...",
+                                    style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FontStyle.normal,
+                                      decorationColor: Colors.black54,
+                                      decorationStyle: TextDecorationStyle.solid,
+                                      fontFamily: "alex"),
+                                    ),
+                                Text("This weeks' best score: " +
+                                    "Loading...",
+                                    style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FontStyle.normal,
+                                      decorationColor: Colors.black54,
+                                      decorationStyle: TextDecorationStyle.solid,
+                                      fontFamily: "alex"),
+                                    )
+                              ],
+
+                            );
+                          } 
+                          
+                          else {
+                            int? value = future.data;
+                            return ListView(
+                              physics: BouncingScrollPhysics(),
+                              padding: const EdgeInsets.all(10),
+
+                              children: <Widget>[
+                                Text("Your current score: " +
+                                    value.toString(),
+                                    style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FontStyle.normal,
+                                      decorationColor: Colors.black54,
+                                      decorationStyle: TextDecorationStyle.solid,
+                                      fontFamily: "alex"),),
+                                    
+                                Text("Your current score: " +
+                                    "Loading...",
+                                    style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FontStyle.normal,
+                                      decorationColor: Colors.black54,
+                                      decorationStyle: TextDecorationStyle.solid,
+                                      fontFamily: "alex"),
+                                    )
                               ],
                             );
                           }
@@ -109,17 +214,32 @@ class MyPageLeftWidget extends StatelessWidget {
 }
 
 // The Main Page (SubWidget of PageViewDemo)
-class MyPageMainWidget extends StatelessWidget {
-  const MyPageMainWidget({Key? key}) : super(key: key);
+class LeaderboardPage extends StatelessWidget {
+  const LeaderboardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Weekly Leaderboard', 
-                  style: TextStyle(color: Color.fromARGB(255, 82, 34, 108)), 
-                  textScaleFactor: 1.3),
+        title: Text('Leaderboard', 
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 39, 19, 49),
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.normal,
+                    shadows: [
+                      Shadow(
+                      color: Colors.black,
+                      blurRadius: 1,
+                      offset: Offset(0.5, 0.5),
+                      
+                      ),
+                    ],
+                  decorationColor: Colors.black54,), 
+                  textScaleFactor: 1.3
+                  ),
+                  
       ),
       body: Center(
         child: Container(
@@ -175,8 +295,8 @@ class MyPageMainWidget extends StatelessWidget {
 }
 
 // The Page on the Right side (SubWidget of PageViewDemo)
-class MyPageRightWidget extends StatelessWidget {
-  const MyPageRightWidget({Key? key}) : super(key: key);
+class FriendsPage extends StatelessWidget {
+  const FriendsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -184,9 +304,23 @@ class MyPageRightWidget extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Your Friends. Beat them!', 
-              style: TextStyle(color: Color.fromARGB(255, 61, 61, 213)), 
-              textScaleFactor: 1.35),
-        backgroundColor: Color.fromARGB(255, 210, 65, 72),
+              style: TextStyle(
+                color: Color.fromARGB(255, 61, 61, 213),
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.normal,
+                shadows: [
+                  Shadow(
+                    color: Colors.black,
+                    blurRadius: 1,
+                    offset: Offset(0.5, 0.5),
+                  ),
+                ],
+              ), 
+    
+                
+                ),
+        backgroundColor: Color.fromARGB(255, 23, 23, 24),
       ),
       body: Center(
         child: FileImageWidget()
@@ -194,6 +328,10 @@ class MyPageRightWidget extends StatelessWidget {
     );
   }
 }
+
+
+
+
 
 
 // this is just styling the custom MyBox widget (from a dumb video..., not necessary)
@@ -209,7 +347,7 @@ final lightRed = Colors.red.shade300;
 final mediumRed = Colors.red.shade600;
 final darkRed = Colors.red.shade900;
 
-
+// just a custom widget, it renders a box with a text inside
 class MyBox extends StatelessWidget {
   final Color color;
   final double height;
