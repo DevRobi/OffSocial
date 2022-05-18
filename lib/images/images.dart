@@ -4,15 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 
-
+// image widget (permission and imageloader from android filesys)
 class FileImageWidget extends StatefulWidget {
   const FileImageWidget({Key? key}) : super(key: key);
 
   @override
   _FileImageWidgetState createState() => _FileImageWidgetState();
 }
-
-
 
 class _FileImageWidgetState extends State<FileImageWidget> {
 

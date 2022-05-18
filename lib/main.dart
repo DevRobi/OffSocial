@@ -10,7 +10,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:usage_stats/usage_stats.dart';
 import 'package:path_provider/path_provider.dart';
 
-
 import 'dart:async';
 
 import 'interface/pages.dart';
@@ -197,12 +196,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('OffSocial', style: TextStyle(color: Color.fromARGB(255, 43, 57, 116)), textScaleFactor: 1.9),
-        backgroundColor: Color.fromARGB(255, 177, 153, 216),
-      ),
+      
       body: PageViewDemo(),
+        
     );
   }
 }
