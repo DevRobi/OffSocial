@@ -1,4 +1,0 @@
-altercode/xyz/uniqueidentifier/BuildConfig.java
- altercode.xyz.uniqueidentifier.BuildConfig
-altercode/xyz/uniqueidentifier/UniqueIdentifierPlugin.java
- altercode.xyz.uniqueidentifier.UniqueIdentifierPlugin

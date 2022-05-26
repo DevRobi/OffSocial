@@ -1,2 +1,0 @@
-io/github/parassharmaa/usage_stats/BuildConfig.java
- io.github.parassharmaa.usage_stats.BuildConfig
