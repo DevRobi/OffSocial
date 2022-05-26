@@ -4,8 +4,6 @@ import 'package:http/http.dart' as http;
 
 import '../model/form.dart';
 
-import 'package:f_logs/f_logs.dart';
-
 /// FormController is a class which does work of saving FeedbackForm in Google Sheets using
 /// HTTP GET request on Google App Script Web URL and parses response and sends result callback.
 class FormController {
@@ -24,8 +22,6 @@ class FormController {
   void submitForm(
       FeedbackForm feedbackForm, void Function(String) callback) async {
     //logfile init
-    LogsConfig config = FLog.getDefaultConfigurations();
-    FLog.applyConfigurations(config);
     try {
       print(feedbackForm.toJson());
       await http.post(URL, body: feedbackForm.toJson()).then((response) async {
@@ -39,10 +35,7 @@ class FormController {
         }
       });
     } catch (e) {
-      FLog.error(
-          className: "Formcontroller",
-          methodName: "submitform",
-          text: e.toString());
+      print(e.toString());
     }
   }
 

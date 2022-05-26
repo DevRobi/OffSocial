@@ -4,8 +4,6 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:tracker/controller/form_controller.dart';
-import 'package:f_logs/f_logs.dart';
-import 'package:background_fetch/background_fetch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:usage_stats/usage_stats.dart';
@@ -164,7 +162,6 @@ class StatisticsPage extends StatelessWidget {
                         ),
                         Chart<void>(
                           height: 600.0,
-                          
                           state: ChartState(
                             ChartData.fromList(
                               [1, 3, 4, 2, 7, 6, 2, 5, 4]
@@ -183,14 +180,16 @@ class StatisticsPage extends StatelessWidget {
                               GridDecoration(
                                 verticalAxisStep: 1,
                                 horizontalAxisStep: 1,
-                                
                               ),
                             ],
                             foregroundDecorations: [
-                              BorderDecoration(borderWidth: 5.0,),
-                            
+                              BorderDecoration(
+                                borderWidth: 5.0,
+                              ),
                             ],
-                            behaviour: ChartBehaviour(isScrollable: true,),
+                            behaviour: ChartBehaviour(
+                              isScrollable: true,
+                            ),
                           ),
                         ),
                       ],
@@ -360,7 +359,7 @@ class FriendsPage extends StatelessWidget {
           ),
           backgroundColor: Color.fromARGB(255, 23, 23, 24),
         ),
-        body: Center(child: FileImageWidget()));
+        body: Center(child: Image.asset('assets/qr-code.png')));
   }
 }
 

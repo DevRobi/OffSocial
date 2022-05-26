@@ -5,7 +5,6 @@ import 'form_controller.dart';
 import '../model/form.dart';
 import 'package_names.dart' as globals;
 
-
 const List<int> openevents = [1, 19];
 const List<int> closeevents = [2, 23, 20];
 
@@ -192,24 +191,8 @@ Map createmapfromeventinfolist(List<EventUsageInfo> infolist) {
   return tobejson;
 }
 
-void eventprocesser(String deviceid) async {
-  //get  prefs
-  final prefs = await SharedPreferences.getInstance();
-  //get start time
-  DateTime lastupdated = DateTime.parse(
-      prefs.getString('lastupdated') ?? DateTime.now().toString());
-  //write updated time
-  DateTime end = DateTime.now();
-
-  prefs.setString('lastupdated', end.toString());
-
-  //getting infos
-  List<EventUsageInfo> infolist = await UsageStats.queryEvents(
-      lastupdated.add(Duration(milliseconds: 1)), end);
-  if (infolist.isEmpty) {
-    return;
-  }
-
+void eventprocesser(String deviceid, List<EventUsageInfo> infolist,
+    DateTime startdate, DateTime enddate) async {
   //split data to days
   //it will be a map with the day as key and the list of events as value
   var splitintodays = {};
@@ -241,7 +224,7 @@ void eventprocesser(String deviceid) async {
     if (day0 == day && splitintodays.keys.length == 1) {
       sendDataToServer(
           createjsonofusage(splitintodays[day],
-              lastupdated.millisecondsSinceEpoch, end.millisecondsSinceEpoch),
+              startdate.millisecondsSinceEpoch, enddate.millisecondsSinceEpoch),
           createmapfromeventinfolist(splitintodays[day]),
           deviceid,
           int.parse(day));
@@ -249,7 +232,7 @@ void eventprocesser(String deviceid) async {
       sendDataToServer(
           createjsonofusage(
               splitintodays[day],
-              lastupdated.millisecondsSinceEpoch,
+              startdate.millisecondsSinceEpoch,
               int.parse(day) * 86400000 + 86400000),
           createmapfromeventinfolist(infolist),
           deviceid,
@@ -261,7 +244,7 @@ void eventprocesser(String deviceid) async {
             .toString()) {
       sendDataToServer(
           createjsonofusage(splitintodays[day], int.parse(day) * 86400000,
-              end.millisecondsSinceEpoch),
+              enddate.millisecondsSinceEpoch),
           createmapfromeventinfolist(infolist),
           deviceid,
           int.parse(day));
