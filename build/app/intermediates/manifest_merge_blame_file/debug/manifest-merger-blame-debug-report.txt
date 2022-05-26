@@ -12,40 +12,40 @@
 12         to allow setting breakpoints, to provide hot reload, etc.
 13    -->
 14    <uses-permission android:name="android.permission.INTERNET" />
-14-->C:\src\projects\OffSocial\android\app\src\main\AndroidManifest.xml:12:5-66
-14-->C:\src\projects\OffSocial\android\app\src\main\AndroidManifest.xml:12:22-64
+14-->C:\Users\bratyo\Documents\code\techtabor\offsocial-master\android\app\src\main\AndroidManifest.xml:12:5-66
+14-->C:\Users\bratyo\Documents\code\techtabor\offsocial-master\android\app\src\main\AndroidManifest.xml:12:22-64
 15    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
-15-->C:\src\projects\OffSocial\android\app\src\main\AndroidManifest.xml:4:5-6:46
-15-->C:\src\projects\OffSocial\android\app\src\main\AndroidManifest.xml:5:9-62
+15-->C:\Users\bratyo\Documents\code\techtabor\offsocial-master\android\app\src\main\AndroidManifest.xml:4:5-6:46
+15-->C:\Users\bratyo\Documents\code\techtabor\offsocial-master\android\app\src\main\AndroidManifest.xml:5:9-62
 16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-16-->C:\src\projects\OffSocial\android\app\src\main\AndroidManifest.xml:7:5-80
-16-->C:\src\projects\OffSocial\android\app\src\main\AndroidManifest.xml:7:22-78
+16-->C:\Users\bratyo\Documents\code\techtabor\offsocial-master\android\app\src\main\AndroidManifest.xml:7:5-80
+16-->C:\Users\bratyo\Documents\code\techtabor\offsocial-master\android\app\src\main\AndroidManifest.xml:7:22-78
 17    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-17-->C:\src\projects\OffSocial\android\app\src\main\AndroidManifest.xml:8:5-79
-17-->C:\src\projects\OffSocial\android\app\src\main\AndroidManifest.xml:8:22-77
+17-->C:\Users\bratyo\Documents\code\techtabor\offsocial-master\android\app\src\main\AndroidManifest.xml:8:5-79
+17-->C:\Users\bratyo\Documents\code\techtabor\offsocial-master\android\app\src\main\AndroidManifest.xml:8:22-77
 18    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
-18-->C:\src\projects\OffSocial\android\app\src\main\AndroidManifest.xml:9:5-80
-18-->C:\src\projects\OffSocial\android\app\src\main\AndroidManifest.xml:9:22-78
+18-->C:\Users\bratyo\Documents\code\techtabor\offsocial-master\android\app\src\main\AndroidManifest.xml:9:5-80
+18-->C:\Users\bratyo\Documents\code\techtabor\offsocial-master\android\app\src\main\AndroidManifest.xml:9:22-78
 19    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
-19-->C:\src\projects\OffSocial\android\app\src\main\AndroidManifest.xml:10:5-79
-19-->C:\src\projects\OffSocial\android\app\src\main\AndroidManifest.xml:10:22-77
-20    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-20-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:11:5-81
-20-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:11:22-78
-21    <uses-permission android:name="android.permission.WAKE_LOCK" />
-21-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:12:5-68
-21-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:12:22-65
-22    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-22-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:13:5-79
-22-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:13:22-76
-23    <uses-permission android:name="android.permission.GET_TASKS" />
-23-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:14:5-68
-23-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:14:22-65
+19-->C:\Users\bratyo\Documents\code\techtabor\offsocial-master\android\app\src\main\AndroidManifest.xml:10:5-79
+19-->C:\Users\bratyo\Documents\code\techtabor\offsocial-master\android\app\src\main\AndroidManifest.xml:10:22-77
+20    <uses-permission android:name="android.permission.WAKE_LOCK" />
+20-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:25:5-68
+20-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:25:22-65
+21    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+21-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:26:5-79
+21-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:26:22-76
+22    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+22-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:27:5-81
+22-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:27:22-78
+23    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+23-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:28:5-77
+23-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:28:22-74
 24
 25    <application
 26        android:name="android.app.Application"
 27        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-27-->[androidx.core:core:1.6.0] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\be6c37f920226f799c8e079c11ae9b32\core-1.6.0\AndroidManifest.xml:24:18-86
+27-->[androidx.core:core:1.6.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\be6c37f920226f799c8e079c11ae9b32\core-1.6.0\AndroidManifest.xml:24:18-86
 28        android:debuggable="true"
 29        android:icon="@mipmap/ic_launcher"
 30        android:label="tracker"
@@ -84,47 +84,219 @@
 63            android:value="2" />
 64
 65        <uses-library
-65-->[androidx.window:window:1.0.0-beta04] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+65-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
 66            android:name="androidx.window.extensions"
-66-->[androidx.window:window:1.0.0-beta04] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+66-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
 67            android:required="false" />
-67-->[androidx.window:window:1.0.0-beta04] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+67-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
 68        <uses-library
-68-->[androidx.window:window:1.0.0-beta04] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+68-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
 69            android:name="androidx.window.sidecar"
-69-->[androidx.window:window:1.0.0-beta04] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+69-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
 70            android:required="false" />
-70-->[androidx.window:window:1.0.0-beta04] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+70-->[androidx.window:window:1.0.0-beta04] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\8bafac36c30506b86a131ad919918c25\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
 71
-72        <receiver android:name="com.transistorsoft.tsbackgroundfetch.FetchAlarmReceiver" />
-72-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:17:9-92
-72-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:17:19-89
-73
-74        <service
-74-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:19:9-22:72
-75            android:name="com.transistorsoft.tsbackgroundfetch.FetchJobService"
-75-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:20:13-80
-76            android:exported="true"
-76-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:21:13-36
-77            android:permission="android.permission.BIND_JOB_SERVICE" />
-77-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:22:13-69
+72        <provider
+72-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:31:9-37:35
+73            android:name="androidx.work.impl.WorkManagerInitializer"
+73-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:32:13-69
+74            android:authorities="com.example.tracker.workmanager-init"
+74-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:33:13-68
+75            android:directBootAware="false"
+75-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:34:13-44
+76            android:exported="false"
+76-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:35:13-37
+77            android:multiprocess="true" />
+77-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:36:13-40
 78
-79        <receiver
-79-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:24:9-31:20
-80            android:name="com.transistorsoft.tsbackgroundfetch.BootReceiver"
-80-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:25:13-77
-81            android:exported="false" >
-81-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:26:13-37
-82            <intent-filter>
-82-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:27:13-30:29
-83                <action android:name="android.intent.action.BOOT_COMPLETED" />
-83-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:28:17-79
-83-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:28:25-76
-84                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-84-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:29:17-84
-84-->[com.transistorsoft:tsbackgroundfetch:0.5.5] C:\Users\Peter\.gradle\caches\transforms-2\files-2.1\66c974a8179a2d1500abfce1626810af\jetified-tsbackgroundfetch-0.5.5\AndroidManifest.xml:29:25-81
-85            </intent-filter>
-86        </receiver>
-87    </application>
-88
-89</manifest>
+79        <service
+79-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:39:9-44:35
+80            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
+80-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:40:13-88
+81            android:directBootAware="false"
+81-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:41:13-44
+82            android:enabled="@bool/enable_system_alarm_service_default"
+82-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:42:13-72
+83            android:exported="false" />
+83-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:43:13-37
+84        <service
+84-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:45:9-51:35
+85            android:name="androidx.work.impl.background.systemjob.SystemJobService"
+85-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:46:13-84
+86            android:directBootAware="false"
+86-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:47:13-44
+87            android:enabled="@bool/enable_system_job_service_default"
+87-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:48:13-70
+88            android:exported="true"
+88-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:49:13-36
+89            android:permission="android.permission.BIND_JOB_SERVICE" />
+89-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:50:13-69
+90        <service
+90-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:52:9-57:35
+91            android:name="androidx.work.impl.foreground.SystemForegroundService"
+91-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:53:13-81
+92            android:directBootAware="false"
+92-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:54:13-44
+93            android:enabled="@bool/enable_system_foreground_service_default"
+93-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:55:13-77
+94            android:exported="false" />
+94-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:56:13-37
+95
+96        <receiver
+96-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:59:9-64:35
+97            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
+97-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:60:13-88
+98            android:directBootAware="false"
+98-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:61:13-44
+99            android:enabled="true"
+99-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:62:13-35
+100            android:exported="false" />
+100-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:63:13-37
+101        <receiver
+101-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:65:9-75:20
+102            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
+102-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:66:13-106
+103            android:directBootAware="false"
+103-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:67:13-44
+104            android:enabled="false"
+104-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:68:13-36
+105            android:exported="false" >
+105-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:69:13-37
+106            <intent-filter>
+106-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:71:13-74:29
+107                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+107-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:72:17-87
+107-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:72:25-84
+108                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+108-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:73:17-90
+108-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:73:25-87
+109            </intent-filter>
+110        </receiver>
+111        <receiver
+111-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:76:9-86:20
+112            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
+112-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:77:13-104
+113            android:directBootAware="false"
+113-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:78:13-44
+114            android:enabled="false"
+114-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:79:13-36
+115            android:exported="false" >
+115-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:80:13-37
+116            <intent-filter>
+116-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:82:13-85:29
+117                <action android:name="android.intent.action.BATTERY_OKAY" />
+117-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:83:17-77
+117-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:83:25-74
+118                <action android:name="android.intent.action.BATTERY_LOW" />
+118-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:84:17-76
+118-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:84:25-73
+119            </intent-filter>
+120        </receiver>
+121        <receiver
+121-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:87:9-97:20
+122            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
+122-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:88:13-104
+123            android:directBootAware="false"
+123-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:89:13-44
+124            android:enabled="false"
+124-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:90:13-36
+125            android:exported="false" >
+125-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:91:13-37
+126            <intent-filter>
+126-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:93:13-96:29
+127                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+127-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:94:17-83
+127-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:94:25-80
+128                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+128-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:95:17-82
+128-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:95:25-79
+129            </intent-filter>
+130        </receiver>
+131        <receiver
+131-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:98:9-107:20
+132            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
+132-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:99:13-103
+133            android:directBootAware="false"
+133-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:100:13-44
+134            android:enabled="false"
+134-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:101:13-36
+135            android:exported="false" >
+135-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:102:13-37
+136            <intent-filter>
+136-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:104:13-106:29
+137                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+137-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:105:17-79
+137-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:105:25-76
+138            </intent-filter>
+139        </receiver>
+140        <receiver
+140-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:108:9-119:20
+141            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
+141-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:109:13-88
+142            android:directBootAware="false"
+142-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:110:13-44
+143            android:enabled="false"
+143-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:111:13-36
+144            android:exported="false" >
+144-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:112:13-37
+145            <intent-filter>
+145-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:114:13-118:29
+146                <action android:name="android.intent.action.BOOT_COMPLETED" />
+146-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:115:17-79
+146-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:115:25-76
+147                <action android:name="android.intent.action.TIME_SET" />
+147-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:116:17-73
+147-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:116:25-70
+148                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+148-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:117:17-81
+148-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:117:25-78
+149            </intent-filter>
+150        </receiver>
+151        <receiver
+151-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:120:9-129:20
+152            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
+152-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:121:13-99
+153            android:directBootAware="false"
+153-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:122:13-44
+154            android:enabled="@bool/enable_system_alarm_service_default"
+154-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:123:13-72
+155            android:exported="false" >
+155-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:124:13-37
+156            <intent-filter>
+156-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:126:13-128:29
+157                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+157-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:127:17-98
+157-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:127:25-95
+158            </intent-filter>
+159        </receiver>
+160        <receiver
+160-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:130:9-140:20
+161            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
+161-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:131:13-78
+162            android:directBootAware="false"
+162-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:132:13-44
+163            android:enabled="true"
+163-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:133:13-35
+164            android:exported="true"
+164-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:134:13-36
+165            android:permission="android.permission.DUMP" >
+165-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:135:13-57
+166            <intent-filter>
+166-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:137:13-139:29
+167                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+167-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:138:17-88
+167-->[androidx.work:work-runtime:2.4.0] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\01f3a2df31e836c4d97e563b2a3ad792\work-runtime-2.4.0\AndroidManifest.xml:138:25-85
+168            </intent-filter>
+169        </receiver>
+170
+171        <service
+171-->[androidx.room:room-runtime:2.2.5] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\dd4ebb51f3fefc11475c429895b68db2\room-runtime-2.2.5\AndroidManifest.xml:25:9-28:40
+172            android:name="androidx.room.MultiInstanceInvalidationService"
+172-->[androidx.room:room-runtime:2.2.5] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\dd4ebb51f3fefc11475c429895b68db2\room-runtime-2.2.5\AndroidManifest.xml:26:13-74
+173            android:directBootAware="true"
+173-->[androidx.room:room-runtime:2.2.5] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\dd4ebb51f3fefc11475c429895b68db2\room-runtime-2.2.5\AndroidManifest.xml:27:13-43
+174            android:exported="false" />
+174-->[androidx.room:room-runtime:2.2.5] C:\Users\bratyo\.gradle\caches\transforms-2\files-2.1\dd4ebb51f3fefc11475c429895b68db2\room-runtime-2.2.5\AndroidManifest.xml:28:13-37
+175    </application>
+176
+177</manifest>
