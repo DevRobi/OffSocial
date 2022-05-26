@@ -58,15 +58,15 @@ class _PageViewDemoState extends State<PageViewDemo> {
         selectedItemColor: Color.fromARGB(255, 64, 156, 255),
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.portrait),
+            icon: Icon(Icons.graphic_eq_rounded),
             label: '-',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.leaderboard_rounded),
             label: '-',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.people),
+            icon: Icon(Icons.people_alt_rounded),
             label: '-',
           )
         ],
