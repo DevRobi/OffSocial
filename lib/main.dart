@@ -83,11 +83,9 @@ void main() {
 void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
     UsageStats.grantUsagePermission();
-    print('permission granted');
     String deviceid =
         await PlatformDeviceId.getDeviceId ?? "Failed to get deviceid";
     print(deviceid);
-    print('from workmanager');
     final prefs = await SharedPreferences.getInstance();
     //get start time
     DateTime start = DateTime.parse(prefs.getString('lastupdated') ??

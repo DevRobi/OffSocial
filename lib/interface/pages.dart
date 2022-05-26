@@ -72,6 +72,7 @@ class _PageViewDemoState extends State<PageViewDemo> {
         ],
         onTap: (int index) {
           setState(() {
+            print('this setState is called');
             _controller.animateToPage(
               index,
               duration: const Duration(milliseconds: 200),
@@ -109,149 +110,145 @@ class StatisticsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            centerTitle: true,
-            title: Text(
-              'Your Stats. Now.',
-              style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.normal,
-                  shadows: [
-                    Shadow(
-                      color: Colors.black,
-                      blurRadius: 1,
-                      offset: Offset(0.5, 0.5),
+      appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            'Your Stats. Now.',
+            style: TextStyle(
+                color: Colors.black87,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.normal,
+                shadows: [
+                  Shadow(
+                    color: Colors.black,
+                    blurRadius: 1,
+                    offset: Offset(0.5, 0.5),
+                  ),
+                ],
+                decorationColor: Colors.black54,
+                decorationStyle: TextDecorationStyle.solid,
+                fontFamily: "alex"),
+          )),
+      body: Center(
+        child: FutureBuilder<int>(
+            future: getCurrentScore(SortUsers(FetchUserData()), deviceId),
+            builder: (context, future) {
+              if (!future.hasData) {
+                return ListView(
+                  physics: BouncingScrollPhysics(),
+                  padding: const EdgeInsets.all(10),
+                  children: <Widget>[
+                    Text(
+                      "Your current score: " + "Loading...",
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.normal,
+                          decorationColor: Colors.black54,
+                          decorationStyle: TextDecorationStyle.solid,
+                          fontFamily: "alex"),
+                    ),
+                    Text(
+                      "This weeks' best score: " + "Loading...",
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.normal,
+                          decorationColor: Colors.black54,
+                          decorationStyle: TextDecorationStyle.solid,
+                          fontFamily: "alex"),
+                    ),
+                    Chart<void>(
+                      height: 600.0,
+                      state: ChartState(
+                        ChartData.fromList(
+                          [1, 3, 4, 2, 7, 6, 2, 5, 4]
+                              .map((e) => BarValue<void>(e.toDouble()))
+                              .toList(),
+                          axisMax: 8.0,
+                        ),
+                        itemOptions: BarItemOptions(
+                          color: Colors.blue,
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          radius:
+                              BorderRadius.vertical(top: Radius.circular(42.0)),
+                        ),
+                        backgroundDecorations: [
+                          GridDecoration(
+                            verticalAxisStep: 1,
+                            horizontalAxisStep: 1,
+                          ),
+                        ],
+                        foregroundDecorations: [
+                          BorderDecoration(
+                            borderWidth: 5.0,
+                          ),
+                        ],
+                        behaviour: ChartBehaviour(
+                          isScrollable: true,
+                        ),
+                      ),
                     ),
                   ],
-                  decorationColor: Colors.black54,
-                  decorationStyle: TextDecorationStyle.solid,
-                  fontFamily: "alex"),
-            )),
-        body: Center(
-          child: Expanded(
-            flex: 2,
-            child: FutureBuilder<int>(
-                future: getCurrentScore(SortUsers(FetchUserData()), deviceId),
-                builder: (context, future) {
-                  if (!future.hasData) {
-                    return ListView(
-                      physics: BouncingScrollPhysics(),
-                      padding: const EdgeInsets.all(10),
-                      children: <Widget>[
-                        Text(
-                          "Your current score: " + "Loading...",
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.normal,
-                              decorationColor: Colors.black54,
-                              decorationStyle: TextDecorationStyle.solid,
-                              fontFamily: "alex"),
+                );
+              } else {
+                int? value = future.data;
+                return ListView(
+                  physics: BouncingScrollPhysics(),
+                  padding: const EdgeInsets.all(10),
+                  children: <Widget>[
+                    Text(
+                      "Your current score: " + value.toString(),
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.normal,
+                          decorationColor: Colors.black54,
+                          decorationStyle: TextDecorationStyle.solid,
+                          fontFamily: "alex"),
+                    ),
+                    Text(
+                      "Your current score: " + "Loading...",
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.normal,
+                          decorationColor: Colors.black54,
+                          decorationStyle: TextDecorationStyle.solid,
+                          fontFamily: "alex"),
+                    ),
+                    Chart<void>(
+                      height: 600.0,
+                      state: ChartState(
+                        ChartData.fromList(
+                          [1, 3, 4, 2, 7, 6, 2, 5, 4]
+                              .map((e) => BarValue<void>(e.toDouble()))
+                              .toList(),
+                          axisMax: 8.0,
                         ),
-                        Text(
-                          "This weeks' best score: " + "Loading...",
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.normal,
-                              decorationColor: Colors.black54,
-                              decorationStyle: TextDecorationStyle.solid,
-                              fontFamily: "alex"),
+                        itemOptions: BarItemOptions(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          radius:
+                              BorderRadius.vertical(top: Radius.circular(42.0)),
                         ),
-                        Chart<void>(
-                          height: 600.0,
-                          state: ChartState(
-                            ChartData.fromList(
-                              [1, 3, 4, 2, 7, 6, 2, 5, 4]
-                                  .map((e) => BarValue<void>(e.toDouble()))
-                                  .toList(),
-                              axisMax: 8.0,
-                            ),
-                            itemOptions: BarItemOptions(
-                              color: Colors.blue,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              radius: BorderRadius.vertical(
-                                  top: Radius.circular(42.0)),
-                            ),
-                            backgroundDecorations: [
-                              GridDecoration(
-                                verticalAxisStep: 1,
-                                horizontalAxisStep: 1,
-                              ),
-                            ],
-                            foregroundDecorations: [
-                              BorderDecoration(
-                                borderWidth: 5.0,
-                              ),
-                            ],
-                            behaviour: ChartBehaviour(
-                              isScrollable: true,
-                            ),
+                        backgroundDecorations: [
+                          GridDecoration(
+                            verticalAxisStep: 1,
+                            horizontalAxisStep: 1,
                           ),
-                        ),
-                      ],
-                    );
-                  } else {
-                    int? value = future.data;
-                    return ListView(
-                      physics: BouncingScrollPhysics(),
-                      padding: const EdgeInsets.all(10),
-                      children: <Widget>[
-                        Text(
-                          "Your current score: " + value.toString(),
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.normal,
-                              decorationColor: Colors.black54,
-                              decorationStyle: TextDecorationStyle.solid,
-                              fontFamily: "alex"),
-                        ),
-                        Text(
-                          "Your current score: " + "Loading...",
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.normal,
-                              decorationColor: Colors.black54,
-                              decorationStyle: TextDecorationStyle.solid,
-                              fontFamily: "alex"),
-                        ),
-                        Chart<void>(
-                          height: 600.0,
-                          state: ChartState(
-                            ChartData.fromList(
-                              [1, 3, 4, 2, 7, 6, 2, 5, 4]
-                                  .map((e) => BarValue<void>(e.toDouble()))
-                                  .toList(),
-                              axisMax: 8.0,
-                            ),
-                            itemOptions: BarItemOptions(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              radius: BorderRadius.vertical(
-                                  top: Radius.circular(42.0)),
-                            ),
-                            backgroundDecorations: [
-                              GridDecoration(
-                                verticalAxisStep: 1,
-                                horizontalAxisStep: 1,
-                              ),
-                            ],
-                            foregroundDecorations: [
-                              BorderDecoration(borderWidth: 5.0),
-                            ],
-                          ),
-                        ),
-                      ],
-                    );
-                  }
-                }),
-          ),
-        ));
+                        ],
+                        foregroundDecorations: [
+                          BorderDecoration(borderWidth: 5.0),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              }
+            }),
+      ),
+    );
   }
 }
 

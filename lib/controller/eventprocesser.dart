@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:usage_stats/usage_stats.dart';
 import 'form_controller.dart';
 import '../model/form.dart';
@@ -175,7 +174,6 @@ void sendDataToServer(Map json, Map rawjson, String deviceid, int dayindex) {
 
   //send to server
   FormController formController = FormController();
-  print(feedbackForm.toJson().toString());
   formController.submitForm(feedbackForm, (String response) {
     return;
   });
