@@ -6,7 +6,9 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:tracker/controller/form_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:tracker/model/counter.dart';
 import 'package:usage_stats/usage_stats.dart';
+import '../controller/form_controller.dart';
 
 import 'dart:async';
 import 'dart:io';
@@ -15,13 +17,13 @@ import '../controller/eventprocesser.dart';
 import '../../main.dart';
 import '../../images/images.dart';
 import 'package:charts_painter/chart.dart';
+import 'package:provider/provider.dart';
 
 /// ADDIIONAL WIDGETS (will be in a separate file in future)
 /// PageViewDemo (Main SubWidget) begin ///
 // The Main Page (SubWidget of PageViewDemo)
-class PageViewDemo extends StatefulWidget {
-  const PageViewDemo({Key? key}) : super(key: key);
 
+/*class PageViewDemo extends StatefulWidget {
   @override
   _PageViewDemoState createState() => _PageViewDemoState();
 }
@@ -31,6 +33,7 @@ class _PageViewDemoState extends State<PageViewDemo> {
 
   final PageController _controller = PageController(
     initialPage: 1,
+    viewportFraction: 0.99,
   );
 
   @override
@@ -71,14 +74,11 @@ class _PageViewDemoState extends State<PageViewDemo> {
           )
         ],
         onTap: (int index) {
-          setState(() {
-            print('this setState is called');
-            _controller.animateToPage(
-              index,
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.easeInOut,
-            );
-          });
+          _controller.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeInOut,
+          );
         },
         currentIndex: _selectedIndex,
       ),
@@ -98,6 +98,101 @@ class _PageViewDemoState extends State<PageViewDemo> {
         },
       ),
     );
+  }
+}*/
+
+class MyBottomNavigationBar extends StatelessWidget {
+  @override
+  const MyBottomNavigationBar({
+    Key? key,
+    required this.onTapped,
+    required this.pageController,
+  }) : super(key: key);
+  final void Function(int)? onTapped;
+  final PageController pageController;
+
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      iconSize: 30,
+      type: BottomNavigationBarType.shifting,
+      selectedFontSize: 20,
+      selectedIconTheme: IconThemeData(color: Color.fromARGB(218, 52, 51, 51)),
+      selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      unselectedIconTheme: IconThemeData(
+        color: Colors.deepOrangeAccent,
+      ),
+      selectedItemColor: Color.fromARGB(255, 64, 156, 255),
+      items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'szeklet'),
+        BottomNavigationBarItem(icon: Icon(Icons.trending_up), label: 'urulek'),
+        BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'trotty'),
+      ],
+      onTap: onTapped,
+      currentIndex: Provider.of<PageIndexProviderModel>(context).pageNumber,
+    );
+  }
+}
+
+class PageViewDemo extends StatelessWidget {
+  const PageViewDemo({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    PageController _pageController = PageController(initialPage: 1);
+    void _onTappedBar(int value) {
+      Provider.of<PageIndexProviderModel>(context, listen: false)
+          .setPage(value);
+      _pageController.animateToPage(value,
+          duration: Duration(milliseconds: 200), curve: Curves.easeInCubic);
+    }
+
+    return Scaffold(
+      bottomNavigationBar: MyBottomNavigationBar(
+          pageController: _pageController, onTapped: _onTappedBar),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: _onTappedBar,
+        children: [StatisticsPage(), LeaderboardPage(), FriendsPage()],
+      ),
+    );
+  }
+}
+
+class LeaderBoard extends StatefulWidget {
+  const LeaderBoard({Key? key}) : super(key: key);
+
+  @override
+  createState() => _LeaderBoardState();
+}
+
+class _LeaderBoardState extends State<LeaderBoard> {
+  Map leaderboardvalues = {"couldn't load your friends' points": ""};
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemCount: leaderboardvalues.length, //length of players list
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(20.0),
+        itemBuilder: (context, index) {
+          return Card(
+            child: ListTile(
+              onTap: () {},
+              title: Text(
+                  (index + 1).toString() +
+                      ". " +
+                      leaderboardvalues.keys.toList()[index].toString() +
+                      " " +
+                      leaderboardvalues.values.toList()[index].toString() +
+                      " pts",
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold)),
+            ),
+          );
+        });
   }
 }
 
@@ -131,122 +226,62 @@ class StatisticsPage extends StatelessWidget {
                 fontFamily: "alex"),
           )),
       body: Center(
-        child: FutureBuilder<int>(
-            future: getCurrentScore(SortUsers(FetchUserData()), deviceId),
-            builder: (context, future) {
-              if (!future.hasData) {
-                return ListView(
-                  physics: BouncingScrollPhysics(),
-                  padding: const EdgeInsets.all(10),
-                  children: <Widget>[
-                    Text(
-                      "Your current score: " + "Loading...",
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.normal,
-                          decorationColor: Colors.black54,
-                          decorationStyle: TextDecorationStyle.solid,
-                          fontFamily: "alex"),
-                    ),
-                    Text(
-                      "This weeks' best score: " + "Loading...",
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.normal,
-                          decorationColor: Colors.black54,
-                          decorationStyle: TextDecorationStyle.solid,
-                          fontFamily: "alex"),
-                    ),
-                    Chart<void>(
-                      height: 600.0,
-                      state: ChartState(
-                        ChartData.fromList(
-                          [1, 3, 4, 2, 7, 6, 2, 5, 4]
-                              .map((e) => BarValue<void>(e.toDouble()))
-                              .toList(),
-                          axisMax: 8.0,
-                        ),
-                        itemOptions: BarItemOptions(
-                          color: Colors.blue,
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          radius:
-                              BorderRadius.vertical(top: Radius.circular(42.0)),
-                        ),
-                        backgroundDecorations: [
-                          GridDecoration(
-                            verticalAxisStep: 1,
-                            horizontalAxisStep: 1,
-                          ),
-                        ],
-                        foregroundDecorations: [
-                          BorderDecoration(
-                            borderWidth: 5.0,
-                          ),
-                        ],
-                        behaviour: ChartBehaviour(
-                          isScrollable: true,
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              } else {
-                int? value = future.data;
-                return ListView(
-                  physics: BouncingScrollPhysics(),
-                  padding: const EdgeInsets.all(10),
-                  children: <Widget>[
-                    Text(
-                      "Your current score: " + value.toString(),
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.normal,
-                          decorationColor: Colors.black54,
-                          decorationStyle: TextDecorationStyle.solid,
-                          fontFamily: "alex"),
-                    ),
-                    Text(
-                      "Your current score: " + "Loading...",
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.normal,
-                          decorationColor: Colors.black54,
-                          decorationStyle: TextDecorationStyle.solid,
-                          fontFamily: "alex"),
-                    ),
-                    Chart<void>(
-                      height: 600.0,
-                      state: ChartState(
-                        ChartData.fromList(
-                          [1, 3, 4, 2, 7, 6, 2, 5, 4]
-                              .map((e) => BarValue<void>(e.toDouble()))
-                              .toList(),
-                          axisMax: 8.0,
-                        ),
-                        itemOptions: BarItemOptions(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          radius:
-                              BorderRadius.vertical(top: Radius.circular(42.0)),
-                        ),
-                        backgroundDecorations: [
-                          GridDecoration(
-                            verticalAxisStep: 1,
-                            horizontalAxisStep: 1,
-                          ),
-                        ],
-                        foregroundDecorations: [
-                          BorderDecoration(borderWidth: 5.0),
-                        ],
-                      ),
-                    ),
-                  ],
-                );
-              }
-            }),
+        child: ListView(
+          physics: BouncingScrollPhysics(),
+          padding: const EdgeInsets.all(10),
+          children: <Widget>[
+            Text(
+              "Your current score: " + "Loading...",
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.normal,
+                  decorationColor: Colors.black54,
+                  decorationStyle: TextDecorationStyle.solid,
+                  fontFamily: "alex"),
+            ),
+            Text(
+              "This weeks' best score: " + "Loading...",
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.normal,
+                  decorationColor: Colors.black54,
+                  decorationStyle: TextDecorationStyle.solid,
+                  fontFamily: "alex"),
+            ),
+            Chart<void>(
+              height: 600.0,
+              state: ChartState(
+                ChartData.fromList(
+                  [1, 3, 4, 2, 7, 6, 2, 5, 4]
+                      .map((e) => BarValue<void>(e.toDouble()))
+                      .toList(),
+                  axisMax: 8.0,
+                ),
+                itemOptions: BarItemOptions(
+                  color: Colors.blue,
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  radius: BorderRadius.vertical(top: Radius.circular(42.0)),
+                ),
+                backgroundDecorations: [
+                  GridDecoration(
+                    verticalAxisStep: 1,
+                    horizontalAxisStep: 1,
+                  ),
+                ],
+                foregroundDecorations: [
+                  BorderDecoration(
+                    borderWidth: 5.0,
+                  ),
+                ],
+                behaviour: ChartBehaviour(
+                  isScrollable: true,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -288,40 +323,7 @@ class LeaderboardPage extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     flex: 2,
-                    child: FutureBuilder<List>(
-                        future: SortUsers(FetchUserData()),
-                        builder: (context, future) {
-                          if (!future.hasData) {
-                            return Container();
-                          } else {
-                            List? list = future.data;
-                            print(list?[0]);
-                            print(list?[1]);
-                            return ListView.builder(
-                                itemCount:
-                                    list?[0].length, //length of players list
-                                scrollDirection: Axis.vertical,
-                                shrinkWrap: true,
-                                padding: const EdgeInsets.all(20.0),
-                                itemBuilder: (context, index) {
-                                  return Card(
-                                    child: ListTile(
-                                      onTap: () {},
-                                      title: Text(
-                                          (index + 1).toString() +
-                                              ". " +
-                                              list![0][index].toString() +
-                                              " " +
-                                              list[1][index].toString() +
-                                              " pts",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold)),
-                                    ),
-                                  );
-                                });
-                          }
-                        }),
+                    child: LeaderBoard(),
                   ),
                 ],
               )),

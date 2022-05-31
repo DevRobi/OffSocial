@@ -40,13 +40,14 @@ class FormController {
   }
 
   //fetch user data from server
-  Future<List> GetUserData() async {
+  Future<Map> GetUserData() async {
     try {
       final response = await http.get(URL);
-      final jsonData = convert.jsonDecode(response.body) as List;
+      final jsonData =
+          convert.jsonDecode(response.body) as Map<String, dynamic>;
       return jsonData;
     } catch (err) {
-      return ["null"];
+      return {'null': 'null'};
     }
   }
 
@@ -57,4 +58,10 @@ class FormController {
       return jsonFeedback.map((json) => FeedbackForm.fromJson(json)).toList();
     });
   }
+}
+
+Future<Map> FetchUserData() async {
+  FormController formController = FormController();
+  Map leaderboarddata = await formController.GetUserData();
+  return leaderboarddata;
 }

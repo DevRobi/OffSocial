@@ -7,77 +7,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:usage_stats/usage_stats.dart';
 import 'package:workmanager/workmanager.dart';
 import 'dart:async';
-
+import 'package:provider/provider.dart';
 import 'interface/pages.dart';
 import 'controller/eventprocesser.dart';
-
-List<String> entries = [];
-
-// Get request on the server
-Future<List> FetchUserData() async {
-  FormController formController = FormController();
-  List list = await formController.GetUserData();
-  return list;
-}
-
-// Sorting users
-Future<List> SortUsers(Future<List> jsondata) async {
-  List list = await jsondata;
-
-  List<int> scores = [];
-  for (Map map in list) {
-    Map newmap = Map.from(map);
-    if (newmap['score'].runtimeType == int) {
-      scores.add((newmap)['score']);
-    }
-  }
-
-  scores.sort();
-  List<int> final_scores = scores.reversed.toList();
-  List<String> device_ids = [];
-  for (int score in final_scores) {
-    for (Map map in list) {
-      Map newmap = Map.from(map);
-
-      if (newmap['score'] == score &&
-          device_ids.contains(newmap['deviceId']) == false) {
-        device_ids.add(newmap['deviceId']);
-      }
-    }
-  }
-  for (String s in device_ids) {
-    entries.add(s);
-  }
-  print(device_ids);
-  List<List> final_list = [];
-  final_list.add(device_ids);
-  final_list.add(final_scores);
-
-  return final_list;
-  // add these values to a GUI List element --> order the names --> leaderboard.
-}
-
-Future<int> getCurrentScore(Future<List> lists, String? deviceId) async {
-  List Lists = await lists;
-  List device_ids = Lists[0];
-  List scores = Lists[1];
-  for (int i = 0; i < device_ids.length; i++) {
-    if (device_ids[i] == deviceId) return scores[i];
-  }
-  return 0;
-}
-
-Future<List> getList() {
-  return Future.value([1, 2, 3, 4]);
-}
-
-void addItem() {
-  List list = [];
-  print(list);
-}
+import 'package:tracker/model/counter.dart';
+import 'package:flutter_displaymode/flutter_displaymode.dart';
 
 void main() {
-  runApp(MaterialApp(home: MyApp()));
+  runApp(const MyApp());
 }
 
 void callbackDispatcher() {
@@ -102,27 +39,17 @@ void callbackDispatcher() {
   });
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-  @override
-  _MyAppState createState() => _MyAppState();
+void setHighRefreshRate() async {
+  await FlutterDisplayMode.setHighRefreshRate();
 }
 
-class _MyAppState extends State<MyApp> {
-  final pageContoller = PageController(initialPage: 1);
-  // stlying of the bottom bar
-  final TabStyle _tabStyle = TabStyle.fixed;
-  int _status = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     print('initplatformstate ran');
+    setHighRefreshRate();
     UsageStats.grantUsagePermission();
     Workmanager().initialize(
       callbackDispatcher,
@@ -134,13 +61,12 @@ class _MyAppState extends State<MyApp> {
         constraints: Constraints(networkType: NetworkType.connected));
     /*Workmanager().registerOneOffTask('sending data to server', "simpleOneOff",
         constraints: Constraints(networkType: NetworkType.connected));*/
-    if (!mounted) return;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageViewDemo(),
-    );
+    return ChangeNotifierProvider(
+        create: (context) => PageIndexProviderModel(),
+        child: MaterialApp(home: PageViewDemo()));
   }
 }
