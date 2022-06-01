@@ -85,8 +85,7 @@ int processtimeforpackagename(String packagename, List<EventUsageInfo> infolist,
   return totalseconds;
 }
 
-Map createUsageMap(
-    List<EventUsageInfo> infolist, int starttime, int endtime) {
+Map createUsageMap(List<EventUsageInfo> infolist, int starttime, int endtime) {
   Map tobejson = {};
   //creating a list of all package names
   List<String> packagenamelist = [];
@@ -100,79 +99,80 @@ Map createUsageMap(
     tobejson[packagename] =
         processtimeforpackagename(packagename, infolist, starttime, endtime);
   }
-  return tobejson;
-}
 
-void getUsageStats(DateTime startdate, DateTime enddate){
-
-}
-
-//for this function, error codes are: 0 succes 1
-void sendDataToServer(Map json, Map rawjson, String deviceid, int dayindex) {
-  //extract tracked apps from json
-
-  // declare tracking variables
-  int totalseconds = 0;
-  int facebook = 0;
-  int instagram = 0;
-  int pinterest = 0;
-  int reddit = 0;
-  int tiktok = 0;
-  int tumblr = 0;
-  int twitch = 0;
-  int twitter = 0;
-  int youtube = 0;
+  // declare tracking variables into maps
+  Map usagemap = {
+    "totalseconds": 0,
+    "facebook": 0,
+    "instagram": 0,
+    "pinterest": 0,
+    "reddit": 0,
+    "tiktok": 0,
+    "tumblr": 0,
+    "twitch": 0,
+    "twitter": 0,
+    "youtube": 0
+  };
 
   //iterate over json
-  for (var packagename in json.keys) {
-    int inseconds = json[packagename];
+  for (var packagename in tobejson.keys) {
+    int inseconds = tobejson[packagename];
     if (globals.allPackageNames.contains(packagename)) {
-      totalseconds += inseconds;
+      usagemap['totalseconds'] += inseconds;
     }
     if (globals.facebookPackageNames.contains(packagename)) {
-      facebook += inseconds;
+      usagemap['facebook'] += inseconds;
     }
     if (globals.instagramPackageNames.contains(packagename)) {
-      instagram += inseconds;
+      usagemap['instagram'] += inseconds;
     }
     if (globals.pinterestPackageNames.contains(packagename)) {
-      pinterest += inseconds;
+      usagemap['pinterest'] += inseconds;
     }
     if (globals.redditPackageNames.contains(packagename)) {
-      reddit += inseconds;
+      usagemap['reddit'] += inseconds;
     }
     if (globals.tiktokPackageNames.contains(packagename)) {
-      tiktok += inseconds;
+      usagemap['tiktok'] += inseconds;
     }
     if (globals.tumblrPackageNames.contains(packagename)) {
-      tumblr += inseconds;
+      usagemap['tumblr'] += inseconds;
     }
     if (globals.twitchPackageNames.contains(packagename)) {
-      twitch += inseconds;
+      usagemap['twitch'] += inseconds;
     }
     if (globals.twitterPackageNames.contains(packagename)) {
-      twitter += inseconds;
+      usagemap['twitter'] += inseconds;
     }
     if (globals.youtubePackageNames.contains(packagename)) {
-      youtube += inseconds;
+      usagemap['youtube'] += inseconds;
     }
   }
+  usagemap['score'] = -(usagemap['totalseconds'] / 60).round();
 
+  return usagemap;
+}
+
+void getUsageStats(DateTime startdate, DateTime enddate) {}
+
+//for this function, error codes are: 0 succes 1
+void sendDataToServer(
+    Map usagedata, Map rawjson, String deviceid, int dayindex) {
   //create form
   FeedbackForm feedbackForm = FeedbackForm(
       deviceid,
       "V2.0",
-      ((-totalseconds / 60).round()).toString(),
-      facebook.toString(),
-      instagram.toString(),
-      pinterest.toString(),
-      reddit.toString(),
-      tiktok.toString(),
-      tumblr.toString(),
-      twitch.toString(),
-      twitter.toString(),
-      youtube.toString(),
-      jsonEncode(json) + jsonEncode(rawjson),
+      usagedata['score'].toString(),
+      usagedata['facebook'].toString(),
+      usagedata['instagram'].toString(),
+      usagedata['pinterest'].toString(),
+      usagedata['reddit'].toString(),
+      usagedata['tiktok'].toString(),
+      usagedata['tumblr'].toString(),
+      usagedata['twitch'].toString(),
+      usagedata['twitter'].toString(),
+      usagedata['youtube'].toString(),
+      jsonEncode(usagedata) + jsonEncode(rawjson),
       dayindex.toString(),
       DateTime.now().toString());
 
@@ -225,16 +225,14 @@ void eventprocesser(String deviceid, List<EventUsageInfo> infolist,
     // if it is on the same day as sending, the end of request is now
     if (day0 == day && splitintodays.keys.length == 1) {
       sendDataToServer(
-          createUsageMap(splitintodays[day],
-              startdate.millisecondsSinceEpoch, enddate.millisecondsSinceEpoch),
+          createUsageMap(splitintodays[day], startdate.millisecondsSinceEpoch,
+              enddate.millisecondsSinceEpoch),
           createmapfromeventinfolist(splitintodays[day]),
           deviceid,
           int.parse(day));
     } else if (day0 == day) {
       sendDataToServer(
-          createUsageMap(
-              splitintodays[day],
-              startdate.millisecondsSinceEpoch,
+          createUsageMap(splitintodays[day], startdate.millisecondsSinceEpoch,
               int.parse(day) * 86400000 + 86400000),
           createmapfromeventinfolist(infolist),
           deviceid,
