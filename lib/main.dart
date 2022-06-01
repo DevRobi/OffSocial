@@ -32,36 +32,6 @@ Future<List> _getUsageData() async {
   return daily_scores;
 }
 
-void callbackDispatcher() {
-  Workmanager().executeTask((task, inputData) async {
-    UsageStats.grantUsagePermission();
-    String deviceid =
-        await PlatformDeviceId.getDeviceId ?? "Failed to get deviceid";
-    print(deviceid);
-    final prefs = await SharedPreferences.getInstance();
-    //get start time
-    DateTime start = DateTime.parse(prefs.getString('lastupdated') ??
-        DateTime.now().subtract(Duration(days: 7)).toString());
-    //write updated time
-    DateTime end = DateTime.now();
-    prefs.setString('lastupdated', end.toString());
-    List<EventUsageInfo> infolist = await UsageStats.queryEvents(start, end);
-
-    createUsageMap(
-        infolist, start.millisecondsSinceEpoch, end.millisecondsSinceEpoch);
-
-    eventprocesser(deviceid, infolist, start, end);
-    //it needs max 45 seconds to finish
-    await Future.delayed(Duration(seconds: 32));
-    print("background task executed");
-    return Future.value(true);
-  });
-}
-
-void setHighRefreshRate() async {
-  await FlutterDisplayMode.setHighRefreshRate();
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
