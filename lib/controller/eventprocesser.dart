@@ -104,7 +104,8 @@ Map createjsonofusage(
 }
 
 //for this function, error codes are: 0 succes 1
-void sendDataToServer(Map json, Map rawjson, String deviceid, int dayindex) {
+void sendDataToServer(
+    Map json, Map rawjson, String deviceid, int dayindex, int allowance) {
   //extract tracked apps from json
 
   // declare tracking variables
@@ -170,7 +171,8 @@ void sendDataToServer(Map json, Map rawjson, String deviceid, int dayindex) {
       youtube.toString(),
       jsonEncode(json) + jsonEncode(rawjson),
       dayindex.toString(),
-      DateTime.now().toString());
+      DateTime.now().toString(),
+      allowance.toString());
 
   //send to server
   FormController formController = FormController();
@@ -225,7 +227,8 @@ void eventprocesser(String deviceid, List<EventUsageInfo> infolist,
               startdate.millisecondsSinceEpoch, enddate.millisecondsSinceEpoch),
           createmapfromeventinfolist(splitintodays[day]),
           deviceid,
-          int.parse(day));
+          int.parse(day),
+          0);
     } else if (day0 == day) {
       sendDataToServer(
           createjsonofusage(
@@ -234,7 +237,8 @@ void eventprocesser(String deviceid, List<EventUsageInfo> infolist,
               int.parse(day) * 86400000 + 86400000),
           createmapfromeventinfolist(infolist),
           deviceid,
-          int.parse(day));
+          int.parse(day),
+          0);
       //if we are sending the data not for the current day, the request period is that whole day
     } else if (day ==
         dayindexfromtimestamp(
@@ -245,14 +249,16 @@ void eventprocesser(String deviceid, List<EventUsageInfo> infolist,
               enddate.millisecondsSinceEpoch),
           createmapfromeventinfolist(infolist),
           deviceid,
-          int.parse(day));
+          int.parse(day),
+          0);
     } else {
       sendDataToServer(
           createjsonofusage(splitintodays[day], int.parse(day) * 86400000,
               int.parse(day) * 86400000 + 86400000),
           createmapfromeventinfolist(infolist),
           deviceid,
-          int.parse(day));
+          int.parse(day),
+          0);
     }
   }
 }
