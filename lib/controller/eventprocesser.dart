@@ -85,7 +85,7 @@ int processtimeforpackagename(String packagename, List<EventUsageInfo> infolist,
   return totalseconds;
 }
 
-Map createjsonofusage(
+Map createUsageMap(
     List<EventUsageInfo> infolist, int starttime, int endtime) {
   Map tobejson = {};
   //creating a list of all package names
@@ -101,6 +101,10 @@ Map createjsonofusage(
         processtimeforpackagename(packagename, infolist, starttime, endtime);
   }
   return tobejson;
+}
+
+void getUsageStats(DateTime startdate, DateTime enddate){
+
 }
 
 //for this function, error codes are: 0 succes 1
@@ -221,14 +225,14 @@ void eventprocesser(String deviceid, List<EventUsageInfo> infolist,
     // if it is on the same day as sending, the end of request is now
     if (day0 == day && splitintodays.keys.length == 1) {
       sendDataToServer(
-          createjsonofusage(splitintodays[day],
+          createUsageMap(splitintodays[day],
               startdate.millisecondsSinceEpoch, enddate.millisecondsSinceEpoch),
           createmapfromeventinfolist(splitintodays[day]),
           deviceid,
           int.parse(day));
     } else if (day0 == day) {
       sendDataToServer(
-          createjsonofusage(
+          createUsageMap(
               splitintodays[day],
               startdate.millisecondsSinceEpoch,
               int.parse(day) * 86400000 + 86400000),
@@ -241,14 +245,14 @@ void eventprocesser(String deviceid, List<EventUsageInfo> infolist,
                 int.parse(infolist[infolist.length - 1].timeStamp!))
             .toString()) {
       sendDataToServer(
-          createjsonofusage(splitintodays[day], int.parse(day) * 86400000,
+          createUsageMap(splitintodays[day], int.parse(day) * 86400000,
               enddate.millisecondsSinceEpoch),
           createmapfromeventinfolist(infolist),
           deviceid,
           int.parse(day));
     } else {
       sendDataToServer(
-          createjsonofusage(splitintodays[day], int.parse(day) * 86400000,
+          createUsageMap(splitintodays[day], int.parse(day) * 86400000,
               int.parse(day) * 86400000 + 86400000),
           createmapfromeventinfolist(infolist),
           deviceid,
