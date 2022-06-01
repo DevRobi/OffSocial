@@ -14,7 +14,8 @@ class FeedbackForm {
   String youtube;
   String encodedinfo;
   String dayindex;
-  String lastupdated;
+  String timestamp;
+  String allowance;
 
   FeedbackForm(
       this.deviceId,
@@ -31,7 +32,8 @@ class FeedbackForm {
       this.youtube,
       this.encodedinfo,
       this.dayindex,
-      this.lastupdated);
+      this.timestamp,
+      this.allowance);
 
   factory FeedbackForm.fromJson(dynamic json) {
     return FeedbackForm(
@@ -49,7 +51,8 @@ class FeedbackForm {
       "${json['youtube']}",
       "${json['encodedinfo']}",
       "${json['dayindex']}",
-      "${json['lastupdated']}",
+      "${json['timestamp']}",
+      "${json['allowance']}",
     );
   }
 
@@ -69,6 +72,7 @@ class FeedbackForm {
         'youtube': youtube,
         'encodedinfo': encodedinfo,
         'dayindex': dayindex,
-        'lastupdated': lastupdated
+        'timestamp': timestamp,
+        'allowance': allowance
       };
 }

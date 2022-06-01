@@ -145,7 +145,7 @@ class PageViewDemo extends StatelessWidget {
       Provider.of<PageIndexProviderModel>(context, listen: false)
           .setPage(value);
       _pageController.animateToPage(value,
-          duration: Duration(milliseconds: 200), curve: Curves.easeInCubic);
+          duration: Duration(milliseconds: 200), curve: Curves.ease);
     }
 
     return Scaffold(
