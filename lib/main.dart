@@ -17,6 +17,21 @@ void main() {
   runApp(MyApp());
 }
 
+Future<List> _getUsageData() async {
+  DateTime now = DateTime.now();
+  var daily_scores = [];
+  for (int i = 7; i > 0; i--) {
+    DateTime startDate = DateTime(now.year, now.month, now.day - i);
+    DateTime endDate = DateTime(now.year, now.month, now.day - i + 1);
+    List<EventUsageInfo> infolist =
+        await UsageStats.queryEvents(startDate, endDate);
+    Map map = createUsageMap(infolist, startDate.millisecondsSinceEpoch,
+        endDate.millisecondsSinceEpoch);
+    daily_scores.add(map['score']);
+  }
+  return daily_scores;
+}
+
 void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
     UsageStats.grantUsagePermission();
@@ -31,6 +46,10 @@ void callbackDispatcher() {
     DateTime end = DateTime.now();
     prefs.setString('lastupdated', end.toString());
     List<EventUsageInfo> infolist = await UsageStats.queryEvents(start, end);
+
+    createUsageMap(
+        infolist, start.millisecondsSinceEpoch, end.millisecondsSinceEpoch);
+
     eventprocesser(deviceid, infolist, start, end);
     //it needs max 45 seconds to finish
     await Future.delayed(Duration(seconds: 32));
