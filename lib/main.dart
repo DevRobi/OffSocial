@@ -14,7 +14,7 @@ import 'package:tracker/model/counter.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 void callbackDispatcher() {
@@ -26,14 +26,14 @@ void callbackDispatcher() {
     final prefs = await SharedPreferences.getInstance();
     //get start time
     DateTime start = DateTime.parse(prefs.getString('lastupdated') ??
-        DateTime.now().subtract(Duration(hours: 1)).toString());
+        DateTime.now().subtract(Duration(days: 7)).toString());
     //write updated time
     DateTime end = DateTime.now();
     prefs.setString('lastupdated', end.toString());
     List<EventUsageInfo> infolist = await UsageStats.queryEvents(start, end);
     eventprocesser(deviceid, infolist, start, end);
     //it needs max 45 seconds to finish
-    await Future.delayed(Duration(seconds: 45));
+    await Future.delayed(Duration(seconds: 32));
     print("background task executed");
     return Future.value(true);
   });
@@ -45,23 +45,6 @@ void setHighRefreshRate() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    print('initplatformstate ran');
-    setHighRefreshRate();
-    UsageStats.grantUsagePermission();
-    Workmanager().initialize(
-      callbackDispatcher,
-      isInDebugMode: true,
-    );
-    Workmanager().registerPeriodicTask(
-        "send data to server", "simplePeriodicTask",
-        frequency: Duration(minutes: 15),
-        constraints: Constraints(networkType: NetworkType.connected));
-    /*Workmanager().registerOneOffTask('sending data to server', "simpleOneOff",
-        constraints: Constraints(networkType: NetworkType.connected));*/
-  }
 
   @override
   Widget build(BuildContext context) {

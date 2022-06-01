@@ -19,23 +19,24 @@ class FormController {
   /// and sends HTTP GET request on [URL]. On successful response, [callback] is called.
   ///
 
-  void submitForm(
-      FeedbackForm feedbackForm, void Function(String) callback) async {
-    //logfile init
+  Future<int> submitForm(FeedbackForm feedbackForm) async {
     try {
       print(feedbackForm.toJson());
+      var responsevar;
       await http.post(URL, body: feedbackForm.toJson()).then((response) async {
         if (response.statusCode == 302) {
           var url = Uri.parse(response.headers['location'].toString());
           await http.get(url).then((response) {
-            callback(convert.jsonDecode(response.body)['status']);
+            responsevar = convert.jsonDecode(response.body)['status'];
           });
         } else {
-          callback(convert.jsonDecode(response.body)['status']);
+          responsevar = convert.jsonDecode(response.body)['status'];
         }
       });
+      return responsevar;
     } catch (e) {
       print(e.toString());
+      return -1;
     }
   }
 

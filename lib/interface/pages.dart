@@ -18,6 +18,7 @@ import '../../main.dart';
 import '../../images/images.dart';
 import 'package:charts_painter/chart.dart';
 import 'package:provider/provider.dart';
+import 'package:workmanager/workmanager.dart';
 
 /// ADDIIONAL WIDGETS (will be in a separate file in future)
 /// PageViewDemo (Main SubWidget) begin ///
@@ -136,7 +137,24 @@ class MyBottomNavigationBar extends StatelessWidget {
 }
 
 class PageViewDemo extends StatelessWidget {
-  const PageViewDemo({Key? key}) : super(key: key);
+  PageViewDemo({Key? key}) : super(key: key) {
+    initPlatformState();
+  }
+  void initPlatformState() async {
+    print('initplatformstate ran');
+    setHighRefreshRate();
+    UsageStats.grantUsagePermission();
+    Workmanager().initialize(
+      callbackDispatcher,
+      isInDebugMode: true,
+    );
+    Workmanager().registerPeriodicTask(
+        "send data to server", "simplePeriodicTask",
+        frequency: Duration(minutes: 15),
+        constraints: Constraints(networkType: NetworkType.connected));
+    Workmanager().registerOneOffTask('sending data to server', "simpleOneOff",
+        constraints: Constraints(networkType: NetworkType.connected));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -254,7 +272,7 @@ class StatisticsPage extends StatelessWidget {
               height: 600.0,
               state: ChartState(
                 ChartData.fromList(
-                  [1, 3, 4, 2, 7, 6, 2, 5, 4]
+                  [1, 3, 23, 2, 7, 6, 2, 5, 4]
                       .map((e) => BarValue<void>(e.toDouble()))
                       .toList(),
                   axisMax: 8.0,

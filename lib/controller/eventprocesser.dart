@@ -19,6 +19,12 @@ List<EventUsageInfo> convertfromservermap(Map servermap) {
   return eventUsageInfoList;
 }
 
+double calculateAllowance(DateTime startdate, DateTime enddate) {
+  Duration duration = enddate.difference(startdate);
+  double allowance = duration.inMinutes / 60;
+  return allowance;
+}
+
 int dayindexfromtimestamp(int timestamp) {
   //there are 86400000 milliseconds in a day
   return (timestamp / 86400000).floor();
@@ -156,8 +162,8 @@ Map createUsageMap(List<EventUsageInfo> infolist, int starttime, int endtime) {
 void getUsageStats(DateTime startdate, DateTime enddate) {}
 
 //for this function, error codes are: 0 succes 1
-void sendDataToServer(
-    Map usagedata, Map rawjson, String deviceid, int dayindex, int allowance) {
+Future<int> sendDataToServer(Map usagedata, Map rawjson, String deviceid,
+    int dayindex, int allowance) async {
   //create form
   FeedbackForm feedbackForm = FeedbackForm(
       deviceid,
@@ -179,9 +185,8 @@ void sendDataToServer(
 
   //send to server
   FormController formController = FormController();
-  formController.submitForm(feedbackForm, (String response) {
-    return;
-  });
+  var response = await formController.submitForm(feedbackForm);
+  return response;
 }
 
 Map createmapfromeventinfolist(List<EventUsageInfo> infolist) {
@@ -194,7 +199,7 @@ Map createmapfromeventinfolist(List<EventUsageInfo> infolist) {
   return tobejson;
 }
 
-void eventprocesser(String deviceid, List<EventUsageInfo> infolist,
+Future<List<int>> eventprocesser(String deviceid, List<EventUsageInfo> infolist,
     DateTime startdate, DateTime enddate) async {
   //split data to days
   //it will be a map with the day as key and the list of events as value
@@ -222,44 +227,46 @@ void eventprocesser(String deviceid, List<EventUsageInfo> infolist,
     }
   }
   // we send all the data to the server, day by day
+  List<int> responselist = [];
   for (var day in splitintodays.keys) {
     // if it is on the same day as sending, the end of request is now
     if (day0 == day && splitintodays.keys.length == 1) {
-      sendDataToServer(
+      responselist.add(await sendDataToServer(
           createUsageMap(splitintodays[day], startdate.millisecondsSinceEpoch,
               enddate.millisecondsSinceEpoch),
           createmapfromeventinfolist(splitintodays[day]),
           deviceid,
           int.parse(day),
-          0);
+          0));
     } else if (day0 == day) {
-      sendDataToServer(
+      responselist.add(await sendDataToServer(
           createUsageMap(splitintodays[day], startdate.millisecondsSinceEpoch,
               int.parse(day) * 86400000 + 86400000),
           createmapfromeventinfolist(infolist),
           deviceid,
           int.parse(day),
-          0);
+          0));
       //if we are sending the data not for the current day, the request period is that whole day
     } else if (day ==
         dayindexfromtimestamp(
                 int.parse(infolist[infolist.length - 1].timeStamp!))
             .toString()) {
-      sendDataToServer(
+      responselist.add(await sendDataToServer(
           createUsageMap(splitintodays[day], int.parse(day) * 86400000,
               enddate.millisecondsSinceEpoch),
           createmapfromeventinfolist(infolist),
           deviceid,
           int.parse(day),
-          0);
+          0));
     } else {
-      sendDataToServer(
+      responselist.add(await sendDataToServer(
           createUsageMap(splitintodays[day], int.parse(day) * 86400000,
               int.parse(day) * 86400000 + 86400000),
           createmapfromeventinfolist(infolist),
           deviceid,
           int.parse(day),
-          0);
+          0));
     }
   }
+  return responselist;
 }
