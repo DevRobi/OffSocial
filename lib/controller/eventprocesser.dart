@@ -154,7 +154,7 @@ Map createUsageMap(List<EventUsageInfo> infolist, int starttime, int endtime) {
       usagemap['youtube'] += inseconds;
     }
   }
-  usagemap['score'] = -(usagemap['totalseconds'] / 60).round();
+  usagemap['score'] = 120 - (usagemap['totalseconds'] / 60).round();
 
   return usagemap;
 }

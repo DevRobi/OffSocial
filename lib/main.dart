@@ -17,21 +17,6 @@ void main() {
   runApp(MyApp());
 }
 
-Future<List> _getUsageData() async {
-  DateTime now = DateTime.now();
-  var daily_scores = [];
-  for (int i = 7; i > 0; i--) {
-    DateTime startDate = DateTime(now.year, now.month, now.day - i);
-    DateTime endDate = DateTime(now.year, now.month, now.day - i + 1);
-    List<EventUsageInfo> infolist =
-        await UsageStats.queryEvents(startDate, endDate);
-    Map map = createUsageMap(infolist, startDate.millisecondsSinceEpoch,
-        endDate.millisecondsSinceEpoch);
-    daily_scores.add(map['score']);
-  }
-  return daily_scores;
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 

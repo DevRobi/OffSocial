@@ -30,7 +30,6 @@ class LeaderboardPage extends StatelessWidget {
           child: Container(
               color: Colors.white10,
               alignment: Alignment.center,
-              //FutureBuilder
               child: Column(
                 //mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: const <Widget>[
