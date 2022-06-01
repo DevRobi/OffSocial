@@ -4,6 +4,7 @@ import 'form_controller.dart';
 import '../model/form.dart';
 import 'package_names.dart' as globals;
 
+const int millisinaday = 86400000;
 const List<int> openevents = [1, 19];
 const List<int> closeevents = [2, 23, 20];
 
@@ -26,8 +27,7 @@ double calculateAllowance(DateTime startdate, DateTime enddate) {
 }
 
 int dayindexfromtimestamp(int timestamp) {
-  //there are 86400000 milliseconds in a day
-  return (timestamp / 86400000).floor();
+  return (timestamp / millisinaday).floor();
 }
 
 int processtimeforpackagename(String packagename, List<EventUsageInfo> infolist,
@@ -163,7 +163,7 @@ void getUsageStats(DateTime startdate, DateTime enddate) {}
 
 //for this function, error codes are: 0 succes 1
 Future<int> sendDataToServer(Map usagedata, Map rawjson, String deviceid,
-    int dayindex, int allowance) async {
+    int dayindex, double allowance) async {
   //create form
   FeedbackForm feedbackForm = FeedbackForm(
       deviceid,
@@ -237,35 +237,45 @@ Future<List<int>> eventprocesser(String deviceid, List<EventUsageInfo> infolist,
           createmapfromeventinfolist(splitintodays[day]),
           deviceid,
           int.parse(day),
-          0));
+          calculateAllowance(startdate, enddate)));
     } else if (day0 == day) {
       responselist.add(await sendDataToServer(
           createUsageMap(splitintodays[day], startdate.millisecondsSinceEpoch,
-              int.parse(day) * 86400000 + 86400000),
+              int.parse(day) * millisinaday + millisinaday),
           createmapfromeventinfolist(infolist),
           deviceid,
           int.parse(day),
-          0));
+          calculateAllowance(
+              startdate,
+              DateTime.fromMillisecondsSinceEpoch(
+                      dayindexfromtimestamp(startdate.millisecondsSinceEpoch))
+                  .add(const Duration(days: 1)))));
       //if we are sending the data not for the current day, the request period is that whole day
     } else if (day ==
         dayindexfromtimestamp(
                 int.parse(infolist[infolist.length - 1].timeStamp!))
             .toString()) {
       responselist.add(await sendDataToServer(
-          createUsageMap(splitintodays[day], int.parse(day) * 86400000,
+          createUsageMap(splitintodays[day], int.parse(day) * millisinaday,
               enddate.millisecondsSinceEpoch),
           createmapfromeventinfolist(infolist),
           deviceid,
           int.parse(day),
-          0));
+          calculateAllowance(
+              DateTime.parse((int.parse(day) * millisinaday).toString()),
+              enddate)));
     } else {
       responselist.add(await sendDataToServer(
-          createUsageMap(splitintodays[day], int.parse(day) * 86400000,
-              int.parse(day) * 86400000 + 86400000),
+          createUsageMap(splitintodays[day], int.parse(day) * millisinaday,
+              int.parse(day) * millisinaday + millisinaday),
           createmapfromeventinfolist(infolist),
           deviceid,
           int.parse(day),
-          0));
+          calculateAllowance(
+              DateTime.fromMillisecondsSinceEpoch(
+                  (int.parse(day) * millisinaday)),
+              DateTime.fromMillisecondsSinceEpoch(
+                  int.parse(day) * millisinaday + millisinaday))));
     }
   }
   return responselist;
