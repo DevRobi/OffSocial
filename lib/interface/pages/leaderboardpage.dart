@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'leaderboardwidget.dart';
+import 'dart:async';
 
 class LeaderboardPage extends StatelessWidget {
-  const LeaderboardPage({Key? key}) : super(key: key);
+  LeaderboardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class LeaderboardPage extends StatelessWidget {
               alignment: Alignment.center,
               child: Column(
                 //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const <Widget>[
+                children: <Widget>[
                   Expanded(
                     flex: 2,
                     child: LeaderBoard(),
