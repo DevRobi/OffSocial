@@ -7,6 +7,7 @@ class FeedbackForm {
   String instagram;
   String pinterest;
   String reddit;
+  String snapchat;
   String tiktok;
   String tumblr;
   String twitch;
@@ -25,6 +26,7 @@ class FeedbackForm {
       this.instagram,
       this.pinterest,
       this.reddit,
+      this.snapchat,
       this.tiktok,
       this.tumblr,
       this.twitch,
@@ -44,6 +46,7 @@ class FeedbackForm {
       "${json['instagram']}",
       "${json['pinterest']}",
       "${json['reddit']}",
+      "${json['snapchat']}",
       "${json['tiktok']}",
       "${json['tumblr']}",
       "${json['twitch']}",
@@ -65,6 +68,7 @@ class FeedbackForm {
         'instagram': instagram,
         'pinterest': pinterest,
         'reddit': reddit,
+        'snapchat': snapchat,
         'tiktok': tiktok,
         'tumblr': tumblr,
         'twitch': twitch,

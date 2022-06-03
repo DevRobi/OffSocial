@@ -114,6 +114,7 @@ Map createUsageMap(List<EventUsageInfo> infolist, int starttime, int endtime) {
     "instagram": 0,
     "pinterest": 0,
     "reddit": 0,
+    "snapchat": 0,
     "tiktok": 0,
     "tumblr": 0,
     "twitch": 0,
@@ -138,6 +139,9 @@ Map createUsageMap(List<EventUsageInfo> infolist, int starttime, int endtime) {
     }
     if (globals.redditPackageNames.contains(packagename)) {
       usagemap['reddit'] += inseconds;
+    }
+    if (globals.snapchatPackageNames.contains(packagename)) {
+      usagemap['snapchat'] += inseconds;
     }
     if (globals.tiktokPackageNames.contains(packagename)) {
       usagemap['tiktok'] += inseconds;
@@ -174,12 +178,13 @@ Future<int> sendDataToServer(Map usagedata, Map rawjson, String deviceid,
       usagedata['instagram'].toString(),
       usagedata['pinterest'].toString(),
       usagedata['reddit'].toString(),
+      usagedata['snapchat'].toString(),
       usagedata['tiktok'].toString(),
       usagedata['tumblr'].toString(),
       usagedata['twitch'].toString(),
       usagedata['twitter'].toString(),
       usagedata['youtube'].toString(),
-      jsonEncode(usagedata) + jsonEncode(rawjson),
+      jsonEncode(rawjson),
       dayindex.toString(),
       DateTime.now().toString(),
       allowance.toString());

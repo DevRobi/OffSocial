@@ -36,10 +36,10 @@ List youtubePackageNames = [
   'org.schabi.newpipe'
 ];
 
-/*List snapchatPackageNames = [
-  'com.snapchat.android', 
+List snapchatPackageNames = [
+  'com.snapchat.android',
   'com.snapchat.android.wearable'
-];*/
+];
 
 List imgurPackageNames = ['com.imgur.mobile', 'com.imgur.android'];
 
@@ -53,5 +53,5 @@ List allPackageNames = facebookPackageNames +
     twitchPackageNames +
     tiktokPackageNames +
     youtubePackageNames +
-//    snapchatPackageNames +
+    snapchatPackageNames +
     imgurPackageNames;
