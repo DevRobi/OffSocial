@@ -5,8 +5,8 @@ import '../model/form.dart';
 import 'package_names.dart' as globals;
 
 const int millisinaday = 86400000;
-const List<int> openevents = [1, 19];
-const List<int> closeevents = [2, 23, 20];
+const List<int> openevents = [1, 15];
+const List<int> closeevents = [2, 16, 20, 26];
 
 List<EventUsageInfo> convertfromservermap(Map servermap) {
   List<EventUsageInfo> eventUsageInfoList = [];
@@ -22,7 +22,8 @@ List<EventUsageInfo> convertfromservermap(Map servermap) {
 
 double calculateAllowance(DateTime startdate, DateTime enddate) {
   Duration duration = enddate.difference(startdate);
-  double allowance = duration.inMinutes / 60;
+  //the user gets a point/12 minutes
+  double allowance = duration.inMilliseconds / (1000 * 60 * 12);
   return allowance;
 }
 

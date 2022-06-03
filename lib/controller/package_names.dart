@@ -13,7 +13,7 @@ List redditPackageNames = [
 ];
 
 List instagramPackageNames = [
-  'com.instagram.android', 
+  'com.instagram.android',
   'com.instagram.lite',
   'com.instalike.instagram'
 ];
@@ -36,19 +36,15 @@ List youtubePackageNames = [
   'org.schabi.newpipe'
 ];
 
-List snapchatPackageNames = [
+/*List snapchatPackageNames = [
   'com.snapchat.android', 
   'com.snapchat.android.wearable'
-];
+];*/
 
-List imgurPackageNames = [
-  'com.imgur.mobile', 
-  'com.imgur.android'
-];
+List imgurPackageNames = ['com.imgur.mobile', 'com.imgur.android'];
 
 // final list containing everything above
-List allPackageNames = 
-    facebookPackageNames +
+List allPackageNames = facebookPackageNames +
     pinterestPackageNames +
     redditPackageNames +
     instagramPackageNames +
@@ -57,5 +53,5 @@ List allPackageNames =
     twitchPackageNames +
     tiktokPackageNames +
     youtubePackageNames +
-    snapchatPackageNames +
+//    snapchatPackageNames +
     imgurPackageNames;
