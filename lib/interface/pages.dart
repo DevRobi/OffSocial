@@ -56,7 +56,11 @@ class PageViewDemo extends StatelessWidget {
       body: PageView(
         controller: _pageController,
         onPageChanged: _onPageChanged,
-        children: [StatisticsPage(), LeaderboardPage(), FriendsPage()],
+        children: [
+          const StatisticsPage(),
+          const LeaderboardPage(),
+          const FriendsPage()
+        ],
       ),
     );
   }

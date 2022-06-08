@@ -159,7 +159,7 @@ Map createUsageMap(List<EventUsageInfo> infolist, int starttime, int endtime) {
       usagemap['youtube'] += inseconds;
     }
   }
-  usagemap['score'] = 120 - (usagemap['totalseconds'] / 60).round();
+  usagemap['score'] = (usagemap['totalseconds'] / 60).round();
 
   return usagemap;
 }
@@ -254,8 +254,7 @@ Future<List<int>> eventprocesser(String deviceid, List<EventUsageInfo> infolist,
           calculateAllowance(
               startdate,
               DateTime.fromMillisecondsSinceEpoch(
-                      dayindexfromtimestamp(startdate.millisecondsSinceEpoch))
-                  .add(const Duration(days: 1)))));
+                  int.parse(day) * millisinaday + millisinaday))));
       //if we are sending the data not for the current day, the request period is that whole day
     } else if (day ==
         dayindexfromtimestamp(
@@ -268,7 +267,8 @@ Future<List<int>> eventprocesser(String deviceid, List<EventUsageInfo> infolist,
           deviceid,
           int.parse(day),
           calculateAllowance(
-              DateTime.parse((int.parse(day) * millisinaday).toString()),
+              DateTime.fromMillisecondsSinceEpoch(
+                  int.parse(day) * millisinaday),
               enddate)));
     } else {
       responselist.add(await sendDataToServer(

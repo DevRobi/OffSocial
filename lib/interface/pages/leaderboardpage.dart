@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
 import 'leaderboardwidget.dart';
-import 'dart:async';
 
-class LeaderboardPage extends StatelessWidget {
-  LeaderboardPage({Key? key}) : super(key: key);
+class LeaderboardPage extends StatefulWidget {
+  const LeaderboardPage({Key? key}) : super(key: key);
+  @override
+  _LeaderBoardState createState() => _LeaderBoardState();
+}
 
+class _LeaderBoardState extends State<LeaderboardPage>
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.refresh),
+          onPressed: () {
+            setState(() {});
+          },
+        ),
+        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         appBar: AppBar(
           centerTitle: true,
           title: const Text('Leaderboard',
@@ -42,4 +55,7 @@ class LeaderboardPage extends StatelessWidget {
               )),
         ));
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
