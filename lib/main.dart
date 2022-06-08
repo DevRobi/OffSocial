@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tracker/model/counter.dart';
-import 'package:tracker/interface/pages.dart';
+import 'package:tracker/interface/page_constructor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
