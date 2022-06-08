@@ -1,3 +1,5 @@
+// all the blacklisted packages (constantly changing list!)
+
 library offsocial.globals;
 
 List facebookPackageNames = ['com.facebook.katana', 'com.facebook.lite'];

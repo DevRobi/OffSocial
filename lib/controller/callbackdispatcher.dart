@@ -13,7 +13,7 @@ void callbackDispatcher() {
     final prefs = await SharedPreferences.getInstance();
     //get start time
     DateTime start = DateTime.parse(prefs.getString('lastupdated') ??
-        DateTime.now().subtract(Duration(days: 7)).toString());
+        DateTime.now().subtract(const Duration(days: 7)).toString());
     //write updated time
     DateTime end = DateTime.now();
     prefs.setString('lastupdated', end.toString());
@@ -24,7 +24,7 @@ void callbackDispatcher() {
 
     eventprocesser(deviceid, infolist, start, end);
     //it needs max 45 seconds to finish
-    await Future.delayed(Duration(seconds: 32));
+    await Future.delayed(const Duration(seconds: 32));
     print("background task executed");
     return Future.value(true);
   });

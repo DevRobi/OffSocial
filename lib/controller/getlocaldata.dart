@@ -1,9 +1,11 @@
 import 'package:usage_stats/usage_stats.dart';
 import 'eventprocesser.dart';
 
+// getting local usage stats from the last 7 days
+
 Future<List<int>> getlocaldata() async {
   DateTime now = DateTime.now();
-  List<int> daily_scores = [];
+  List<int> dailyScores = [];
   for (int i = 7; i > 0; i--) {
     DateTime startDate = DateTime(now.year, now.month, now.day - i);
     DateTime endDate = DateTime(now.year, now.month, now.day - i + 1);
@@ -11,7 +13,7 @@ Future<List<int>> getlocaldata() async {
         await UsageStats.queryEvents(startDate, endDate);
     Map map = createUsageMap(infolist, startDate.millisecondsSinceEpoch,
         endDate.millisecondsSinceEpoch);
-    daily_scores.add(map['score']);
+    dailyScores.add(map['score']);
   }
-  return daily_scores;
+  return dailyScores;
 }
