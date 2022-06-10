@@ -1,16 +1,98 @@
 // ignore_for_file: unused_element, unused_field, prefer_typing_uninitialized_variables, prefer_const_constructors, avoid_print, unused_import
+import 'package:background_fetch/background_fetch.dart';
 import 'package:flutter/material.dart';
+import 'package:platform_device_id/platform_device_id.dart';
 import 'package:provider/provider.dart';
 import 'package:tracker/model/counter.dart';
 import 'package:tracker/interface/page_constructor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:usage_stats/usage_stats.dart';
+
+import 'controller/eventprocesser.dart';
+
+void backgroundFetchHeadlessTask(HeadlessTask task) async {
+  var taskId = task.taskId;
+  var timeout = task.timeout;
+  if (timeout) {
+    print("[BackgroundFetch] Headless task timed-out: $taskId");
+    BackgroundFetch.finish(taskId);
+    return;
+  }
+  print("[BackgroundFetch] Headless event received: $taskId");
+  BackgroundFetch.finish(taskId);
+}
+
+void _onBackgroundFetch(String taskId) async {
+  print("[BackgroundFetch] Event received: $taskId");
+  UsageStats.grantUsagePermission();
+  String deviceid =
+      await PlatformDeviceId.getDeviceId ?? "Failed to get deviceid";
+  print(deviceid);
+  final prefs = await SharedPreferences.getInstance();
+  //get start time
+  DateTime start = DateTime.parse(prefs.getString('lastupdated') ??
+      DateTime.now().subtract(const Duration(days: 7)).toString());
+  //write updated time
+  DateTime end = DateTime.now();
+  prefs.setString('lastupdated', end.toString());
+  List<EventUsageInfo> infolist = await UsageStats.queryEvents(start, end);
+
+  createUsageMap(
+      infolist, start.millisecondsSinceEpoch, end.millisecondsSinceEpoch);
+
+  eventprocesser(deviceid, infolist, start, end);
+  //it needs max 15 seconds to finish
+  await Future.delayed(const Duration(seconds: 2));
+}
+
+void _onBackgroundFetchTimeout(String taskId) async {
+  print("[BackgroundFetch] Event received: $taskId");
+  BackgroundFetch.finish(taskId);
+}
 
 void main() async {
   runApp(MyApp());
+  BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);
+  BackgroundFetch.scheduleTask(TaskConfig(
+    taskId: "my task",
+    delay: 1,
+  ));
+  int startstatus = await BackgroundFetch.start();
+  print("backgroundfetch start status : " + startstatus.toString());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    configBackgroundFetch();
+  }
+
+  void configBackgroundFetch() async {
+    int Status = await BackgroundFetch.configure(
+        BackgroundFetchConfig(
+          minimumFetchInterval: 15,
+          stopOnTerminate: false,
+          enableHeadless: true,
+          startOnBoot: true,
+          requiredNetworkType: NetworkType.ANY,
+          requiresBatteryNotLow: false,
+          requiresCharging: false,
+          requiresStorageNotLow: false,
+          requiresDeviceIdle: false,
+        ),
+        _onBackgroundFetch,
+        _onBackgroundFetchTimeout);
+    print("backgroundfetchocnfig status : " + Status.toString());
+
+    if (!mounted) return;
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -18,19 +18,20 @@ class FormController {
   /// Async function which saves feedback, parses [feedbackForm] parameters
   /// and sends HTTP GET request on [URL]. On successful response, [callback] is called.
   ///
+  /// -1: function error, otherwise http status codes
 
   Future<int> submitForm(FeedbackForm feedbackForm) async {
     try {
       print(feedbackForm.toJson());
-      var responsevar;
+      int responsevar = 0;
       await http.post(URL, body: feedbackForm.toJson()).then((response) async {
         if (response.statusCode == 302) {
           var url = Uri.parse(response.headers['location'].toString());
           await http.get(url).then((response) {
-            responsevar = convert.jsonDecode(response.body)['status'];
+            responsevar = response.statusCode;
           });
         } else {
-          responsevar = convert.jsonDecode(response.body)['status'];
+          responsevar = response.statusCode;
         }
       });
       return responsevar;

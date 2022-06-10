@@ -5,8 +5,8 @@ import '../model/form.dart';
 import 'package_names.dart' as globals;
 
 const int millisinaday = 86400000;
-const List<int> openevents = [1, 15];
-const List<int> closeevents = [2, 16, 20, 26];
+const List<int> openevents = [1, 19];
+const List<int> closeevents = [2, 20, 26];
 
 List<EventUsageInfo> convertfromservermap(Map servermap) {
   List<EventUsageInfo> eventUsageInfoList = [];
@@ -29,6 +29,12 @@ double calculateAllowance(DateTime startdate, DateTime enddate) {
 
 int dayindexfromtimestamp(int timestamp) {
   return (timestamp / millisinaday).floor();
+}
+
+double scoreDay(int starttime, int endtime, int totalseconds) {
+  DateTime startdate = DateTime.fromMillisecondsSinceEpoch(starttime);
+  DateTime enddate = DateTime.fromMillisecondsSinceEpoch(endtime);
+  return calculateAllowance(startdate, enddate) - totalseconds / 60;
 }
 
 int processtimeforpackagename(String packagename, List<EventUsageInfo> infolist,
@@ -159,7 +165,7 @@ Map createUsageMap(List<EventUsageInfo> infolist, int starttime, int endtime) {
       usagemap['youtube'] += inseconds;
     }
   }
-  usagemap['score'] = (usagemap['totalseconds'] / 60).round();
+  usagemap['score'] = scoreDay(starttime, endtime, usagemap['totalseconds']);
 
   return usagemap;
 }
@@ -191,7 +197,7 @@ Future<int> sendDataToServer(Map usagedata, Map rawjson, String deviceid,
 
   //send to server
   FormController formController = FormController();
-  var response = await formController.submitForm(feedbackForm);
+  int response = await formController.submitForm(feedbackForm);
   return response;
 }
 
@@ -207,6 +213,9 @@ Map createmapfromeventinfolist(List<EventUsageInfo> infolist) {
 
 Future<List<int>> eventprocesser(String deviceid, List<EventUsageInfo> infolist,
     DateTime startdate, DateTime enddate) async {
+  if (infolist.isEmpty) {
+    return [];
+  }
   //split data to days
   //it will be a map with the day as key and the list of events as value
   var splitintodays = {};

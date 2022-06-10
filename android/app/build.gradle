@@ -46,7 +46,6 @@ android {
         multiDexEnabled true
         applicationId "com.example.tracker"
         minSdkVersion 22
-        targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         targetSdkVersion rootProject.ext.targetSdkVersion

@@ -13,7 +13,7 @@ Future<List<int>> getlocaldata() async {
         await UsageStats.queryEvents(startDate, endDate);
     Map map = createUsageMap(infolist, startDate.millisecondsSinceEpoch,
         endDate.millisecondsSinceEpoch);
-    dailyScores.add(map['score']);
+    dailyScores.add(map['score'].round());
   }
   return dailyScores;
 }
