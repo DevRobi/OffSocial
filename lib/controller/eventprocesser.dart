@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:usage_stats/usage_stats.dart';
 import 'form_controller.dart';
 import '../model/form.dart';
@@ -170,11 +169,8 @@ Map createUsageMap(List<EventUsageInfo> infolist, int starttime, int endtime) {
   return usagemap;
 }
 
-void getUsageStats(DateTime startdate, DateTime enddate) {}
-
-//for this function, error codes are: 0 succes 1
-Future<int> sendDataToServer(Map usagedata, Map rawjson, String deviceid,
-    int dayindex, double allowance) async {
+Future<int> sendDataToServer(
+    Map usagedata, String deviceid, int dayindex, double allowance) async {
   //create form
   FeedbackForm feedbackForm = FeedbackForm(
       deviceid,
@@ -190,7 +186,6 @@ Future<int> sendDataToServer(Map usagedata, Map rawjson, String deviceid,
       usagedata['twitch'].toString(),
       usagedata['twitter'].toString(),
       usagedata['youtube'].toString(),
-      jsonEncode(rawjson),
       dayindex.toString(),
       DateTime.now().toString(),
       allowance.toString());
@@ -249,7 +244,6 @@ Future<List<int>> eventprocesser(String deviceid, List<EventUsageInfo> infolist,
       responselist.add(await sendDataToServer(
           createUsageMap(splitintodays[day], startdate.millisecondsSinceEpoch,
               enddate.millisecondsSinceEpoch),
-          createmapfromeventinfolist(splitintodays[day]),
           deviceid,
           int.parse(day),
           calculateAllowance(startdate, enddate)));
@@ -257,7 +251,6 @@ Future<List<int>> eventprocesser(String deviceid, List<EventUsageInfo> infolist,
       responselist.add(await sendDataToServer(
           createUsageMap(splitintodays[day], startdate.millisecondsSinceEpoch,
               int.parse(day) * millisinaday + millisinaday),
-          createmapfromeventinfolist(infolist),
           deviceid,
           int.parse(day),
           calculateAllowance(
@@ -272,7 +265,6 @@ Future<List<int>> eventprocesser(String deviceid, List<EventUsageInfo> infolist,
       responselist.add(await sendDataToServer(
           createUsageMap(splitintodays[day], int.parse(day) * millisinaday,
               enddate.millisecondsSinceEpoch),
-          createmapfromeventinfolist(infolist),
           deviceid,
           int.parse(day),
           calculateAllowance(
@@ -283,7 +275,6 @@ Future<List<int>> eventprocesser(String deviceid, List<EventUsageInfo> infolist,
       responselist.add(await sendDataToServer(
           createUsageMap(splitintodays[day], int.parse(day) * millisinaday,
               int.parse(day) * millisinaday + millisinaday),
-          createmapfromeventinfolist(infolist),
           deviceid,
           int.parse(day),
           calculateAllowance(

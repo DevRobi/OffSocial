@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'leaderboardwidget.dart';
 
@@ -16,7 +14,7 @@ class _LeaderBoardState extends State<LeaderboardPage>
     super.build(context);
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.refresh),
+          child: const Icon(Icons.refresh),
           onPressed: () {
             setState(() {});
           },
@@ -49,7 +47,7 @@ class _LeaderBoardState extends State<LeaderboardPage>
               alignment: Alignment.center,
               child: Column(
                 //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
+                children: const <Widget>[
                   Expanded(
                     flex: 2,
                     child: LeaderBoard(),

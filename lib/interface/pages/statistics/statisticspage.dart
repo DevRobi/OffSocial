@@ -1,20 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_import, unused_import
-
-import 'package:charts_painter/chart.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tracker/controller/getlocaldata.dart';
-import 'package:intl/intl.dart';
-import 'package:clock/clock.dart';
-import 'package:path/path.dart';
-import 'package:syncfusion_flutter_core/core.dart';
-import 'package:syncfusion_flutter_core/core_internal.dart';
-import 'package:syncfusion_flutter_core/interactive_scroll_viewer_internal.dart';
-import 'package:syncfusion_flutter_core/legend_internal.dart';
-import 'package:syncfusion_flutter_core/localizations.dart';
-import 'package:syncfusion_flutter_core/theme.dart';
-import 'package:syncfusion_flutter_core/tooltip_internal.dart';
-import 'package:syncfusion_flutter_core/zoomable_internal.dart';
 import 'package:tracker/interface/pages/statistics/bar_chart.dart';
 
 class StatisticsPage extends StatefulWidget {
@@ -35,7 +19,7 @@ class _StatisticsPageState extends State<StatisticsPage>
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.refresh),
+        child: const Icon(Icons.refresh),
         onPressed: () {
           setState(() {});
         },
@@ -43,13 +27,13 @@ class _StatisticsPageState extends State<StatisticsPage>
       appBar: AppBar(
           centerTitle: true,
           backgroundColor: Theme.of(context).primaryColorDark,
-          title: Text(
+          title: const Text(
             'Statistics',
             style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.normal,
-                shadows: const [
+                shadows: [
                   Shadow(
                     color: Colors.black,
                     blurRadius: 3,
@@ -60,7 +44,7 @@ class _StatisticsPageState extends State<StatisticsPage>
                 decorationStyle: TextDecorationStyle.solid,
                 fontFamily: "alex"),
           )),
-      body: BarChart(),
+      body: const BarChart(),
     );
   }
 

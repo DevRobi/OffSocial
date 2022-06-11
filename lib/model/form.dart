@@ -13,7 +13,6 @@ class FeedbackForm {
   String twitch;
   String twitter;
   String youtube;
-  String encodedinfo;
   String dayindex;
   String timestamp;
   String allowance;
@@ -32,7 +31,6 @@ class FeedbackForm {
       this.twitch,
       this.twitter,
       this.youtube,
-      this.encodedinfo,
       this.dayindex,
       this.timestamp,
       this.allowance);
@@ -52,7 +50,6 @@ class FeedbackForm {
       "${json['twitch']}",
       "${json['twitter']}",
       "${json['youtube']}",
-      "${json['encodedinfo']}",
       "${json['dayindex']}",
       "${json['timestamp']}",
       "${json['allowance']}",
@@ -74,7 +71,6 @@ class FeedbackForm {
         'twitch': twitch,
         'twitter': twitter,
         'youtube': youtube,
-        'encodedinfo': encodedinfo,
         'dayindex': dayindex,
         'timestamp': timestamp,
         'allowance': allowance

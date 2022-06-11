@@ -1,4 +1,3 @@
-// ignore_for_file: unused_element, unused_field, prefer_typing_uninitialized_variables, prefer_const_constructors, avoid_print, unused_import
 import 'package:background_fetch/background_fetch.dart';
 import 'package:flutter/material.dart';
 import 'package:platform_device_id/platform_device_id.dart';
@@ -23,7 +22,7 @@ void backgroundFetchHeadlessTask(HeadlessTask task) async {
 }
 
 void main() async {
-  runApp(MyApp());
+  runApp(const MyApp());
   BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);
 }
 
@@ -78,7 +77,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void configBackgroundFetch() async {
-    int Status = await BackgroundFetch.configure(
+    int backgroundFetchConfigureStatus = await BackgroundFetch.configure(
         BackgroundFetchConfig(
           minimumFetchInterval: 15,
           stopOnTerminate: false,
@@ -92,7 +91,8 @@ class _MyAppState extends State<MyApp> {
         ),
         _onBackgroundFetch,
         _onBackgroundFetchTimeout);
-    print("backgroundfetchocnfig status : " + Status.toString());
+    print("backgroundfetchocnfig status : " +
+        backgroundFetchConfigureStatus.toString());
 
     if (!mounted) return;
   }
@@ -104,7 +104,7 @@ class _MyAppState extends State<MyApp> {
         child: MaterialApp(
             home: PageViewDemo(),
             theme: ThemeData(
-              accentColor: Colors.green,
+              secondaryHeaderColor: Colors.green,
               primaryColor: Colors.green,
               primarySwatch: Colors.green,
               fontFamily: 'Roboto',

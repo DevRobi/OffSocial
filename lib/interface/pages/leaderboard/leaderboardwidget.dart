@@ -8,7 +8,6 @@ class LeaderBoard extends StatelessWidget {
   Future<String> getDeviceId() async {
     String deviceid =
         await PlatformDeviceId.getDeviceId ?? "Failed to retrieve deviceid";
-    print(deviceid);
     return deviceid;
   }
 
@@ -34,7 +33,7 @@ class LeaderBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: Future.wait([FetchUserData(), getDeviceId()]),
+        future: Future.wait([fetchUserData(), getDeviceId()]),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:

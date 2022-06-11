@@ -55,5 +55,4 @@ List allPackageNames = facebookPackageNames +
     twitchPackageNames +
     tiktokPackageNames +
     youtubePackageNames +
-    snapchatPackageNames +
-    imgurPackageNames;
+    snapchatPackageNames;
