@@ -1,13 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:tracker/controller/form_controller.dart';
+import 'package:platform_device_id/platform_device_id.dart';
 
 class LeaderBoard extends StatelessWidget {
   const LeaderBoard({Key? key}) : super(key: key);
 
+  Future<String> getDeviceId() async {
+    String deviceid =
+        await PlatformDeviceId.getDeviceId ?? "Failed to retrieve deviceid";
+    print(deviceid);
+    return deviceid;
+  }
+
+  String createemojiindex(int index) {
+    String emoji = '';
+    switch (index) {
+      case 0:
+        emoji = '🥇 ';
+        break;
+      case 1:
+        emoji = '🥈 ';
+        break;
+      case 2:
+        emoji = '🥉 ';
+        break;
+      default:
+        emoji = (index + 1).toString() + ". ";
+        break;
+    }
+    return emoji;
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: FetchUserData(),
+        future: Future.wait([FetchUserData(), getDeviceId()]),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
@@ -17,26 +44,35 @@ class LeaderBoard extends StatelessWidget {
                 return Text('Error: ${snapshot.error}');
               } else {
                 return ListView.builder(
-                  itemCount: snapshot.data.length, //length of players list
+                  itemCount: snapshot.data[0].length, //length of players list
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   padding: const EdgeInsets.all(20.0),
                   itemBuilder: (context, index) {
+                    String homedeviceid = snapshot.data[1];
+                    String currentdeviceid =
+                        snapshot.data[0].keys.toList()[index].toString();
+                    bool ishomedevice = homedeviceid == currentdeviceid;
+                    String cardtitle = (createemojiindex(index) +
+                        currentdeviceid +
+                        " " +
+                        snapshot.data[0].values.toList()[index].toString() +
+                        " pts");
+                    TextStyle cardtitlestyle = const TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold);
                     return Card(
+                      color: ishomedevice ? Colors.green : Colors.white,
                       child: ListTile(
                         onTap: () {},
-                        title: Text(
-                            (index + 1).toString() +
-                                ". " +
-                                snapshot.data.keys.toList()[index].toString() +
-                                " " +
-                                snapshot.data.values
-                                    .toList()[index]
-                                    .toString() +
-                                " pts",
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold)),
+                        title: ishomedevice
+                            ? Text(
+                                cardtitle + " (You)",
+                                style: cardtitlestyle,
+                              )
+                            : Text(
+                                cardtitle,
+                                style: cardtitlestyle,
+                              ),
                       ),
                     );
                   },
@@ -46,22 +82,3 @@ class LeaderBoard extends StatelessWidget {
         });
   }
 }
-
-  /*Map _leaderboardvalues = {"couldn't load your friends' points": ""};
-  Timer _every15secs = Timer.periodic(Duration(seconds: 15), (timer) {});
-
-  void getleaderboard() async {
-    FormController formController = FormController();
-    Map leaderboardmap = await formController.GetUserData();
-    setState(() {
-      _leaderboardvalues = leaderboardmap;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _every15secs = Timer.periodic(Duration(seconds: 15), (timer) {
-      getleaderboard();
-    });
-  }*/

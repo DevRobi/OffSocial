@@ -12,27 +12,24 @@ class MyBottomNavigationBar extends StatelessWidget {
   final void Function(int)? onTapped;
   final PageController pageController;
 
+  @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       iconSize: 30,
       type: BottomNavigationBarType.shifting,
       selectedFontSize: 20,
-      selectedIconTheme:
-          const IconThemeData(color: Color.fromARGB(218, 52, 51, 51)),
       selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      unselectedIconTheme: const IconThemeData(
-        color: Colors.deepOrangeAccent,
-      ),
-      selectedItemColor: const Color.fromARGB(255, 64, 156, 255),
+      unselectedIconTheme: const IconThemeData(color: Colors.black),
+      selectedIconTheme: const IconThemeData(color: Colors.green),
       items: const [
         BottomNavigationBarItem(
-            icon: Icon(Icons.graphic_eq_rounded), label: 'szeklet'),
+            icon: Icon(Icons.analytics_outlined), label: 'Statistics'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.leaderboard_rounded), label: 'urulek'),
+            icon: Icon(Icons.leaderboard_rounded), label: 'Leaderboard'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.people_alt_rounded), label: 'trotty'),
+            icon: Icon(Icons.people_alt_rounded), label: 'Friends'),
       ],
       onTap: onTapped,
       currentIndex: Provider.of<PageIndexProviderModel>(context).pageNumber,

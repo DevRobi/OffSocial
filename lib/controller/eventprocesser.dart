@@ -178,7 +178,7 @@ Future<int> sendDataToServer(Map usagedata, Map rawjson, String deviceid,
   //create form
   FeedbackForm feedbackForm = FeedbackForm(
       deviceid,
-      "V2.0",
+      "V2.1",
       usagedata['score'].toString(),
       usagedata['facebook'].toString(),
       usagedata['instagram'].toString(),

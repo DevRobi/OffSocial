@@ -7,11 +7,11 @@ class FriendsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Theme.of(context).primaryColorDark,
           centerTitle: true,
           title: const Text(
-            'Your Friends. Beat them!',
+            'Your group',
             style: TextStyle(
-              color: Color.fromARGB(255, 61, 61, 213),
               fontSize: 26,
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.normal,
@@ -24,7 +24,6 @@ class FriendsPage extends StatelessWidget {
               ],
             ),
           ),
-          backgroundColor: const Color.fromARGB(255, 23, 23, 24),
         ),
         body: Center(child: Image.asset('assets/qr-code.png')));
   }

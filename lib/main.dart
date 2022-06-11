@@ -22,43 +22,9 @@ void backgroundFetchHeadlessTask(HeadlessTask task) async {
   BackgroundFetch.finish(taskId);
 }
 
-void _onBackgroundFetch(String taskId) async {
-  print("[BackgroundFetch] Event received: $taskId");
-  UsageStats.grantUsagePermission();
-  String deviceid =
-      await PlatformDeviceId.getDeviceId ?? "Failed to get deviceid";
-  print(deviceid);
-  final prefs = await SharedPreferences.getInstance();
-  //get start time
-  DateTime start = DateTime.parse(prefs.getString('lastupdated') ??
-      DateTime.now().subtract(const Duration(days: 7)).toString());
-  //write updated time
-  DateTime end = DateTime.now();
-  prefs.setString('lastupdated', end.toString());
-  List<EventUsageInfo> infolist = await UsageStats.queryEvents(start, end);
-
-  createUsageMap(
-      infolist, start.millisecondsSinceEpoch, end.millisecondsSinceEpoch);
-
-  eventprocesser(deviceid, infolist, start, end);
-  //it needs max 15 seconds to finish
-  await Future.delayed(const Duration(seconds: 2));
-}
-
-void _onBackgroundFetchTimeout(String taskId) async {
-  print("[BackgroundFetch] Event received: $taskId");
-  BackgroundFetch.finish(taskId);
-}
-
 void main() async {
   runApp(MyApp());
   BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);
-  BackgroundFetch.scheduleTask(TaskConfig(
-    taskId: "my task",
-    delay: 1,
-  ));
-  int startstatus = await BackgroundFetch.start();
-  print("backgroundfetch start status : " + startstatus.toString());
 }
 
 class MyApp extends StatefulWidget {
@@ -72,6 +38,43 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     configBackgroundFetch();
+  }
+
+  void _onBackgroundFetch(String taskId) async {
+    try {
+      print("[BackgroundFetch] Event received: $taskId");
+      UsageStats.grantUsagePermission();
+      String deviceid =
+          await PlatformDeviceId.getDeviceId ?? "Failed to get deviceid";
+      print("[BackgroundFetch] deviceid: $deviceid");
+      final prefs = await SharedPreferences.getInstance();
+      print(prefs.toString());
+      //get start time
+      DateTime start = DateTime.parse(prefs.getString('lastupdated') ??
+          DateTime.now().subtract(const Duration(days: 7)).toString());
+      //write updated time
+      DateTime end = DateTime.now();
+      prefs.setString('lastupdated', end.toString());
+
+      print("[BackgroundFetch] lastupdated: $start.toString()");
+      List<EventUsageInfo> infolist = await UsageStats.queryEvents(start, end);
+
+      createUsageMap(
+          infolist, start.millisecondsSinceEpoch, end.millisecondsSinceEpoch);
+
+      List<int> listofresponses =
+          await eventprocesser(deviceid, infolist, start, end);
+      print("[BackgroundFetch] listofresponses: $listofresponses");
+      BackgroundFetch.finish(taskId);
+    } catch (e) {
+      print('[BackgroundFetch] Failed to complete fetch: $e');
+      BackgroundFetch.finish(taskId);
+    }
+  }
+
+  void _onBackgroundFetchTimeout(String taskId) async {
+    print("[BackgroundFetch] Event received: $taskId");
+    BackgroundFetch.finish(taskId);
   }
 
   void configBackgroundFetch() async {
@@ -98,6 +101,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
         create: (context) => PageIndexProviderModel(),
-        child: MaterialApp(home: PageViewDemo()));
+        child: MaterialApp(
+            home: PageViewDemo(),
+            theme: ThemeData(
+              accentColor: Colors.green,
+              primaryColor: Colors.green,
+              primarySwatch: Colors.green,
+              fontFamily: 'Roboto',
+            )));
   }
 }

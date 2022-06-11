@@ -25,9 +25,10 @@ class _LeaderBoardState extends State<LeaderboardPage>
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         appBar: AppBar(
           centerTitle: true,
+          backgroundColor: Theme.of(context).primaryColorDark,
           title: const Text('Leaderboard',
               style: TextStyle(
-                color: Color.fromARGB(255, 39, 19, 49),
+                color: Colors.white,
                 fontSize: 26,
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.normal,
